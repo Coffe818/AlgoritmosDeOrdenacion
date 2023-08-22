@@ -91,19 +91,19 @@ public class ClasesString {
     public void Transformacion(String s, String t, int x) {
         switch (x) {
             case 1:
-                JOptionPane.showMessageDialog(null, "Convertir a minusculas /n" + s + "/n" + s.toLowerCase());
+                JOptionPane.showMessageDialog(null, "Convertir a minusculas \n" + s + "\n" + s.toLowerCase());
                 break;
             case 2:
-                JOptionPane.showMessageDialog(null, "Convertir a mayusculas /n" + s + "/n" + s.toUpperCase());
+                JOptionPane.showMessageDialog(null, "Convertir a mayusculas \n" + s + "\n" + s.toUpperCase());
                 break;
             case 3:
-                JOptionPane.showMessageDialog(null, "Concatena los Strings /n" + s + " + " + t + "/n" + s.concat(t));
+                JOptionPane.showMessageDialog(null, "Concatena los Strings \n" + s + " + " + t + "\n" + s.concat(t));
                 break;
             case 4:// remplaza letras
                 String c1 = JOptionPane.showInputDialog(null, "Letra que queiras cambiar de la palabra " + s);
                 String c2 = JOptionPane.showInputDialog(null, "Letra a la cual se remplazara");
                 JOptionPane.showMessageDialog(null,
-                        "Letra remplazada: " + c1 + " /nPor la letra: " + c2 + " /nPalabra " + s + "/nResultado: "
+                        "Letra remplazada: " + c1 + " \nPor la letra: " + c2 + " \nPalabra " + s + "\nResultado: "
                                 + s.replace(c1, c2));
                 break;
             case 5:
@@ -117,12 +117,12 @@ public class ClasesString {
                     int numero2 = Integer.parseInt(entrada2);
 
                     if (numero1 <= max && numero2 <= max) {
-                        JOptionPane.showMessageDialog(null, s+"/n"+s.substring(numero1, numero2));
+                        JOptionPane.showMessageDialog(null, s + "\n" + s.substring(numero1, numero2));
                         flag = false;
                     } else {
                         JOptionPane.showMessageDialog(null, "numeron menores a: " + max);
                         flag = true;
-                    }// para que de la bandera verdadera o flsa ya sea si esta corecta
+                    } // para que de la bandera verdadera o flsa ya sea si esta corecta
                 } while (flag);
 
                 break;
@@ -139,6 +139,59 @@ public class ClasesString {
         t = JOptionPane.showInputDialog(null, "Segundo String: ");
         s.trim();
         t.trim();// les aplico el trim desde le incio
+        ClasesString cs = new ClasesString();
+        int opcion;
+        do {
+            opcion = Integer.parseInt(JOptionPane.showInputDialog(null, "====== MENU Clases String======\n0.Salir"
+                    + "\nCOMPARACION \n1. equals() \n 2. equalsIgnoreCase() \n 3. compareTo() \n 4. compareToIgnoreCase()"
+                    + "\nBUSQUEDA \n5. endsWith() \n6. startsWith() \n7. indexOf() \n8. lastIndexOf()"
+                    + "\nTRANSFOMACION \n9. toLowerCase() \n10. toUpperCase() \n11. concat() \n12. replace() \n13. substring()"));
+            switch (opcion) {
+                case 1:
+                    cs.Comparacion(s, t, 1);
+                    break;
+                case 2:
+                    cs.Comparacion(s, t, 2);
+                    break;
+                case 3:
+                    cs.Comparacion(s, t, 3);
+                    break;
+                case 4:
+                    cs.Comparacion(s, t, 4);
+                    break;
+                case 5:
+                    cs.Busqueda(s, t, 1);
+                    break;
+                case 6:
+                    cs.Busqueda(s, t, 2);
+                    break;
+                case 7:
+                    cs.Busqueda(s, t, 3);
+                    break;
+                case 8:
+                    cs.Busqueda(s, t, 4);
+                    break;
+                case 9:
+                    cs.Transformacion(s, t, 1);
+                    break;
+                case 10:
+                    cs.Transformacion(s, t, 2);
+                    break;
+                case 11:
+                    cs.Transformacion(s, t, 3);
+                    break;
+                case 12:
+                    cs.Transformacion(s, t, 3);
+                    break;
+                case 13:
+                    cs.Transformacion(s, t, 3);
+                    break;
+                default:
+                JOptionPane.showMessageDialog(null, "opcion invalida");
+                    break;
+            }
+
+        } while (opcion != 0);
 
     }// end main
 

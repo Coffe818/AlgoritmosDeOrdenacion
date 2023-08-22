@@ -46,6 +46,7 @@ public class ClasesString {
     }// end comparacion
 
     public void Busqueda(String s, String t, int x) {
+        String p = "";
         switch (x) {
             case 1:
                 if (s.endsWith(t)) { // regresan true or false
@@ -62,20 +63,22 @@ public class ClasesString {
                 } // end if para ends with
                 break;
             case 3:
-                if (s.indexOf(t) == -1) { // regresa la poscion donde se encuentra la palabra y si no esta da -1
+                p = JOptionPane.showInputDialog(null, "Palabra a buscar: ");
+                if (s.indexOf(p) == -1) { // regresa la poscion donde se encuentra la palabra y si no esta da -1
                     JOptionPane.showMessageDialog(null, "No existe");
                 } else {
                     JOptionPane.showMessageDialog(null,
-                            "Se encuentra en la posicion" + s.indexOf(t) + "/n" + s + "/n" + t);// la primera que se
+                            "La palabra "+p+" se encuentra en la posicion " + s.indexOf(p) + "\n" + s );// la primera que se
                                                                                                 // encuantra
                 } // end if else par index of
                 break;
             case 4:
-                if (s.lastIndexOf(t) == -1) { // regresa la poscion donde se encuentra la palabra y si no esta da -1
+                p = JOptionPane.showInputDialog(null, "Palabra a buscar: ");
+                if (s.lastIndexOf(p) == -1) { // regresa la poscion donde se encuentra la palabra y si no esta da -1
                     JOptionPane.showMessageDialog(null, "No existe");
                 } else {
                     JOptionPane.showMessageDialog(null,
-                            "Se encuentra en la posicion" + s.indexOf(t) + "/n" + s + "/n" + t);// la segunda que se
+                            "La palabra "+p+" se encuentra en la posicion " + s.lastIndexOf(p) + "\n" + s);// la segunda que se
                                                                                                 // encuantra
                 } // end if else par index of
 
@@ -142,10 +145,13 @@ public class ClasesString {
         ClasesString cs = new ClasesString();
         int opcion;
         do {
-            opcion = Integer.parseInt(JOptionPane.showInputDialog(null, "====== MENU Clases String======\n0.Salir"
+
+            opcion = Integer.parseInt(JOptionPane.showInputDialog(null, "====== MENU Clases String======\n"
+                    + "PALABRAS ACUTALMENTE\nPalabra 1: " + s + "\nPalabra 2: " + t
                     + "\nCOMPARACION \n1. equals() \n 2. equalsIgnoreCase() \n 3. compareTo() \n 4. compareToIgnoreCase()"
                     + "\nBUSQUEDA \n5. endsWith() \n6. startsWith() \n7. indexOf() \n8. lastIndexOf()"
-                    + "\nTRANSFOMACION \n9. toLowerCase() \n10. toUpperCase() \n11. concat() \n12. replace() \n13. substring()"));
+                    + "\nTRANSFOMACION \n9. toLowerCase() \n10. toUpperCase() \n11. concat() \n12. replace() \n13. substring()"
+                    + "0. salir \n 55 Cambiar Strings"));
             switch (opcion) {
                 case 1:
                     cs.Comparacion(s, t, 1);
@@ -181,13 +187,19 @@ public class ClasesString {
                     cs.Transformacion(s, t, 3);
                     break;
                 case 12:
-                    cs.Transformacion(s, t, 3);
+                    cs.Transformacion(s, t, 4);
                     break;
                 case 13:
-                    cs.Transformacion(s, t, 3);
+                    cs.Transformacion(s, t, 5);
+                    break;
+                case 55:
+                    s = JOptionPane.showInputDialog(null, "Primer String: ");
+                    t = JOptionPane.showInputDialog(null, "Segundo String: ");
+                    s.trim();
+                    t.trim();// les aplico el trim desde le incio
                     break;
                 default:
-                JOptionPane.showMessageDialog(null, "opcion invalida");
+                    JOptionPane.showMessageDialog(null, "opcion invalida");
                     break;
             }
 

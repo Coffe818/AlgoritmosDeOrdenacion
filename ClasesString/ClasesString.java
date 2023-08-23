@@ -123,7 +123,7 @@ public class ClasesString {
                         JOptionPane.showMessageDialog(null, s + "\n" + s.substring(numero1, numero2));
                         flag = false;
                     } else {
-                        JOptionPane.showMessageDialog(null, "numeron menores a: " + max);
+                        JOptionPane.showMessageDialog(null, "Los numeros tiene que ser menores a: " + max);
                         flag = true;
                     } // para que de la bandera verdadera o flsa ya sea si esta corecta
                 } while (flag);
@@ -151,7 +151,7 @@ public class ClasesString {
                     + "\nCOMPARACION \n1. equals() \n 2. equalsIgnoreCase() \n 3. compareTo() \n 4. compareToIgnoreCase()"
                     + "\nBUSQUEDA \n5. endsWith() \n6. startsWith() \n7. indexOf() \n8. lastIndexOf()"
                     + "\nTRANSFOMACION \n9. toLowerCase() \n10. toUpperCase() \n11. concat() \n12. replace() \n13. substring()"
-                    + "0. salir \n 55 Cambiar Strings"));
+                    + "\n0. salir \n 55 Cambiar Strings"));
             switch (opcion) {
                 case 1:
                     cs.Comparacion(s, t, 1);
@@ -197,6 +197,8 @@ public class ClasesString {
                     t = JOptionPane.showInputDialog(null, "Segundo String: ");
                     s.trim();
                     t.trim();// les aplico el trim desde le incio
+                    break;
+                case 0:
                     break;
                 default:
                     JOptionPane.showMessageDialog(null, "opcion invalida");

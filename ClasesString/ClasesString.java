@@ -95,9 +95,11 @@ public class ClasesString {
         switch (x) {
             case 1:
                 JOptionPane.showMessageDialog(null, "Convertir a minusculas \n" + s + "\n" + s.toLowerCase());
+                s=s.toLowerCase();
                 break;
             case 2:
                 JOptionPane.showMessageDialog(null, "Convertir a mayusculas \n" + s + "\n" + s.toUpperCase());
+                s=s.toUpperCase();
                 break;
             case 3:
                 JOptionPane.showMessageDialog(null, "Concatena los Strings \n" + s + " + " + t + "\n" + s.concat(t));

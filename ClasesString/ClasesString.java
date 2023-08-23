@@ -121,7 +121,7 @@ public class ClasesString {
                     String entrada2 = JOptionPane.showInputDialog("Ingresa la poscion 2 sea menor a " + max + " :");
                     int numero2 = Integer.parseInt(entrada2);
 
-                    if (numero1 <= max && numero2 <= max) {
+                    if (numero1 <= max || numero2 <= max) {
                         JOptionPane.showMessageDialog(null, s + "\n" + s.substring(numero1, numero2));
                         flag = false;
                     } else {

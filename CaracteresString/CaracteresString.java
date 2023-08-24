@@ -71,7 +71,7 @@ public class CaracteresString {
     // METODOS PARA ENCRIPTAR Y DESENCRIPTAR EN CIFRADO CESAR
     static int desplazar = 5;
 
-    public  String Encriptar(String mensaje, int desplazar) {
+    public String Encriptar(String mensaje, int desplazar) {
         // Algoritmo de sustitución simple
         StringBuilder mensajeEncriptado = new StringBuilder();
         for (char c : mensaje.toCharArray()) {
@@ -80,7 +80,7 @@ public class CaracteresString {
         return mensajeEncriptado.toString();
     }
 
-    public  String Desencriptar(String mensajeEncriptado, int desplazar) {
+    public String Desencriptar(String mensajeEncriptado, int desplazar) {
         // Desencriptar el mensaje usando el algoritmo inverso
         StringBuilder mensajeDesencriptado = new StringBuilder();
         for (char c : mensajeEncriptado.toCharArray()) {
@@ -93,13 +93,30 @@ public class CaracteresString {
 
         s = JOptionPane.showInputDialog(null, "Ingrese el String: ");
         CaracteresString cs = new CaracteresString();
-        String encriptado= cs.Encriptar(s, desplazar);
-        
-        JOptionPane.showMessageDialog(null, "=======MENU CARACTARES STRING ======="
-                + "\nString:" + s + "\nLongitud del String: " + s.length() + "\n"+cs.NumLetras(s)+"\n" + cs.NumPalabras(s)
-                + "\nConverit Mayus: "+ s.toUpperCase()+ "\nConvertir Minus: " +s.toLowerCase() + "\n" + cs.PalabrasVocal(s)
-                + "\nPalabra invertida: " +cs.InvertirCaracteres(s)+ "\nMensaje ecnriptado: " + encriptado
-                + "\nMensaje invertida: " +cs.Desencriptar(encriptado, desplazar));
+        String encriptado = cs.Encriptar(s, desplazar);
+        int opcion;
+        do {
+            opcion = Integer.parseInt(JOptionPane.showInputDialog(null, "=======MENU CARACTARES STRING ======="
+                    + "\nString: " + s + "\nLongitud del String: " + s.length() + "\n" + cs.NumLetras(s) + "\n"
+                    + cs.NumPalabras(s)
+                    + "\nConverit Mayus: " + s.toUpperCase() + "\nConvertir Minus: " + s.toLowerCase() + "\n"
+                    + cs.PalabrasVocal(s)
+                    + "\nPalabra invertida: " + cs.InvertirCaracteres(s) + "\nMensaje ecnriptado: " + encriptado
+                    + "\nMensaje invertida: " + cs.Desencriptar(encriptado, desplazar) + "\n1. Cambiar String "
+                    + "\n0. Salir"));
+            switch (opcion) {
+                case 0:
+                    
+                    break;
+                case 1:
+                     s = JOptionPane.showInputDialog(null, "Ingrese nuevo String: ");
+                    break;
+
+                default:
+                    break;
+            }
+
+        } while (opcion != 0);
 
     }// end mainF
 }// end calss

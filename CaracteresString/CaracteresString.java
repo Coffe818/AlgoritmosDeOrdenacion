@@ -32,10 +32,20 @@ public class CaracteresString {
             } else {
                 especial++;
             } // y sino es letra sera algun digito, sino es espacio, sino es especial
-            
-            totalLetras=vocales+consonantes;
-        }//end for
+
+            totalLetras = vocales + consonantes;
+        } // end for
     }// end NumLetras
+
+    public void NumPalabras(String s) {
+        String[] palabras = s.trim().split("\\s+");
+        // aquie se crea un arreglo en el cual se agrega el string "s.trim()", y el
+        // ".split()", es para dividir el String "s" dependiedno el patron
+        // y el "\\s+" es epra buscar espacios "\\s" y el "+" es para si se repite mas
+        // de una ves
+        JOptionPane.showMessageDialog(null, "El numeor de palabras que tiene es: " +palabras.length );
+
+    }// end NumPalabras
 
     public static void main(String[] args) {
         JOptionPane.showInputDialog(null, "Ingrese el String ");

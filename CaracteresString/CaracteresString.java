@@ -65,6 +65,26 @@ public class CaracteresString {
         return reversa.toString();
     }// end reverseString
 
+    // METODOS PARA ENCRIPTAR Y DESENCRIPTAR EN CIFRADO CESAR
+    int desplazar = 0;
+    public static String Encriptar(String mensaje, int desplazar) {
+        // Algoritmo de sustitución simple
+        StringBuilder mensajeEncriptado = new StringBuilder();
+        for (char c : mensaje.toCharArray()) {
+            mensajeEncriptado.append((char) (c + desplazar)); // se desplaza esa cantidad de veces en la tabla ASCII
+        }// end for para encriptar letra por letra despalzandoloas
+        return mensajeEncriptado.toString();
+    }
+
+    public static String Desencriptar(String mensajeEncriptado, int desplazar) {
+        // Desencriptar el mensaje usando el algoritmo inverso
+        StringBuilder mensajeDesencriptado = new StringBuilder();
+        for (char c : mensajeEncriptado.toCharArray()) {
+            mensajeDesencriptado.append((char) (c - desplazar)); //  se desplaza esa cantidad de veces en la tabla ASCII
+        }// end for para desencriptar letra por letra despalzandoloas
+        return mensajeDesencriptado.toString();
+    }
+
     public static void main(String[] args) {
         JOptionPane.showInputDialog(null, "Ingrese el String ");
 

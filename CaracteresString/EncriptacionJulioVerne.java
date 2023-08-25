@@ -29,9 +29,30 @@ public class EncriptacionJulioVerne {
         }// end for que se mueve ne filas
     }// end imprimir array
 
+    public static String Encriptar(String[][] array) {
+        StringBuilder mensajeEncriptado = new StringBuilder();
+
+        for (int col = 0; col < Columnas; col++) {
+            for (int fila = 0; fila < Filas; fila++) {
+                if (array[fila][col] != null) {
+                    mensajeEncriptado.append(array[fila][col]);
+                }// agrega la letra del array en esa posicion solo si tiene algun valor
+            }//end for para moverse en filas
+        }//end for para moverse en columnas
+
+        return mensajeEncriptado.toString();
+    }//end Encriptar
+
+
+
     public static void main(String[] args) {
         LlenarArray(nombreArray, string);
         ImprimirArray(nombreArray);
         System.out.println("fials: " + Filas + " Columnas: " + Columnas);
+
+        String mensajeEncriptado = Encriptar(nombreArray);
+        System.out.println("\nMensaje encritado: " + mensajeEncriptado);
+        
+       
     }// end main
 }// end clas

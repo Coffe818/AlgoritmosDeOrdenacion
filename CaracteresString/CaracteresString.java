@@ -13,7 +13,7 @@ public class CaracteresString {
     static int totalLetras = 0;
 
     public static boolean isVowel(char c) {
-        return "aeiouAEIOU".indexOf(c) != -1;
+        return "aeiouAEIOUàèìòùÀÈÌÒÙäáéíóúÉ".indexOf(c) != -1;
     }// regresa verdadero si el char que pide es una vocal, expetuando los acentos
      // porque no los se poner
 
@@ -93,16 +93,17 @@ public class CaracteresString {
 
         s = JOptionPane.showInputDialog(null, "Ingrese el String: ");
         CaracteresString cs = new CaracteresString();
-        String encriptado = cs.Encriptar(s, desplazar);
+        
         int opcion;
         do {
+            String encriptado = cs.Encriptar(s, desplazar);
             opcion = Integer.parseInt(JOptionPane.showInputDialog(null, "=======MENU CARACTARES STRING ======="
                     + "\nString: " + s + "\nLongitud del String: " + s.length() + "\n" + cs.NumLetras(s) + "\n"
                     + cs.NumPalabras(s)
                     + "\nConverit Mayus: " + s.toUpperCase() + "\nConvertir Minus: " + s.toLowerCase() + "\n"
                     + cs.PalabrasVocal(s)
                     + "\nPalabra invertida: " + cs.InvertirCaracteres(s) + "\nMensaje ecnriptado: " + encriptado
-                    + "\nMensaje invertida: " + cs.Desencriptar(encriptado, desplazar) + "\n1. Cambiar String "
+                    + "\nMensaje desncriptado: " + cs.Desencriptar(encriptado, desplazar) + "\n1. Cambiar String "
                     + "\n0. Salir"));
             switch (opcion) {
                 case 0:

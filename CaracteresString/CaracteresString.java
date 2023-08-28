@@ -92,18 +92,22 @@ public class CaracteresString {
     public static void main(String[] args) {
 
         s = JOptionPane.showInputDialog(null, "Ingrese el String: ");
+        String clave = JOptionPane.showInputDialog(null, "Ingrese clave: ");
         CaracteresString cs = new CaracteresString();
         
         int opcion;
         do {
             String encriptado = cs.Encriptar(s, desplazar);
+            String mensajeEncriptado = EncriptacionJulioVerne.Encriptar(s, clave);
+            String mensajeDesencriptado = EncriptacionJulioVerne.Desencriptar(mensajeEncriptado, clave);
             opcion = Integer.parseInt(JOptionPane.showInputDialog(null, "=======MENU CARACTARES STRING ======="
                     + "\nString: " + s + "\nLongitud del String: " + s.length() + "\n" + cs.NumLetras(s) + "\n"
                     + cs.NumPalabras(s)
                     + "\nConverit Mayus: " + s.toUpperCase() + "\nConvertir Minus: " + s.toLowerCase() + "\n"
                     + cs.PalabrasVocal(s)
                     + "\nPalabra invertida: " + cs.InvertirCaracteres(s) + "\nMensaje ecnriptado: " + encriptado
-                    + "\nMensaje desncriptado: " + cs.Desencriptar(encriptado, desplazar) + "\n1. Cambiar String "
+                    + "\nMensaje desncriptado: " + cs.Desencriptar(encriptado, desplazar) +"\nEncriptado Julio Verne: "+ mensajeEncriptado
+                    +"\nDesencriptado Julio Verne: "+mensajeDesencriptado+ "\n1. Cambiar String "
                     + "\n0. Salir"));
             switch (opcion) {
                 case 0:

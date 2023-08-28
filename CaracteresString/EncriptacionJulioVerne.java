@@ -1,17 +1,22 @@
 package CaracteresString;
 
 public class EncriptacionJulioVerne {
-    static String string = "buenos dias estrellitas, la tierra les dice ho";
-    static String clave = "clave";// la clave solo se usa para saber el tamano del array
-    static int Columnas = clave.length();
-    static int Filas = (int) Math.ceil(string.length() / (double) Columnas);
-    static String[][] Array = new String[Filas][Columnas];
+    
+    static int Columnas;
+    static int Filas;
+    static String[][] Array;
+
+    public static void CrearArray(String mensaje, String clave) {
+        Columnas = clave.length();
+        Filas = (int) Math.ceil(mensaje.length() / (double) Columnas);
+        Array = new String[Filas][Columnas];
+    }// end metodo para crear el array
 
     // el metodod e imprimir lo pueden usar los dos encriptar y desencriptar, el
     // llenar no, porque para encriptar se va llenando horizontalmente(por filas)y
     // el
     // desencrpitar se va llenando verticalmete(por columnas)
-    public static void ImprimirArray(String[][] array) {
+    public static void ImprimirArray(String[][]array) {
         for (int fila = 0; fila < Filas; fila++) {
             for (int col = 0; col < Columnas; col++) {
                 System.out.print(array[fila][col] + " ");
@@ -34,14 +39,15 @@ public class EncriptacionJulioVerne {
         } // end for para moverme en filas
     }// end llenar Array
 
-    public static String Encriptar(String[][] array, String mensaje) {
+    public static String Encriptar(String mensaje, String clave) {
         StringBuilder mensajeEncriptado = new StringBuilder();
-        LlenarArrayE(array, mensaje);
-        //ImprimirArray(array);
+        CrearArray(mensaje, clave);
+        LlenarArrayE(Array, mensaje);
+        ImprimirArray(Array);
         for (int col = 0; col < Columnas; col++) {
             for (int fila = 0; fila < Filas; fila++) {
-                if (array[fila][col] != null) {
-                    mensajeEncriptado.append(array[fila][col]);
+                if (Array[fila][col] != null) {
+                    mensajeEncriptado.append(Array[fila][col]);
                 } // agrega la letra del array en esa posicion solo si tiene algun valor
                 else {
                     mensajeEncriptado.append("%");
@@ -53,17 +59,17 @@ public class EncriptacionJulioVerne {
     }// end Encriptar
 
     // metods para llenar array para desencriptar
-    public static void LlenarArrayD(String mensajeEncriptado, String clave) {
+    public static void LlenarArrayD(String [][] array, String mensajeEncriptado) {
         int tamano = 0;
         for (int col = 0; col < Columnas; col++) {
             for (int fila = 0; fila < Filas; fila++) {
                 if (tamano < mensajeEncriptado.length()) {
                     char agregar = mensajeEncriptado.charAt(tamano);
                     if (agregar != '%') {
-                        Array[fila][col] = String.valueOf(agregar);
+                        array[fila][col] = String.valueOf(agregar);
                         tamano++;
                     } else {
-                        Array[fila][col] = null;
+                        array[fila][col] = null;
                         tamano++;
                     }//este if else , sierve para eliminar los % que pusimos en el mensaje 
                 } // end if para agregar letra por letra en vertical
@@ -71,10 +77,11 @@ public class EncriptacionJulioVerne {
         } // end for para moverme en filas
     }
 
-    public static String Desencriptar(String menseajeEncriptado, String Clave) {
+    public static String Desencriptar(String menseajeEncriptado, String clave) {
         StringBuilder mensajeDesencriptado = new StringBuilder();
-        LlenarArrayD(menseajeEncriptado, Clave);
-        //ImprimirArray(Array);
+        CrearArray(menseajeEncriptado, clave);
+        LlenarArrayD(Array, menseajeEncriptado);
+        ImprimirArray(Array);
 
         for (int fila = 0; fila < Filas; fila++) {
             for (int col = 0; col < Columnas; col++) {
@@ -89,13 +96,14 @@ public class EncriptacionJulioVerne {
     }// end desencriptar
 
     public static void main(String[] args) {
+        String s="buenos dias estrellitas, la tierra les dice ho";
+        String c="clave";
+        System.out.println("Mesnaje original:" + s);
 
-        System.out.println("Mesnaje original:" + string);
-
-        String mensajeEncriptado = Encriptar(Array, string);
+        String mensajeEncriptado = Encriptar(s,c);
         System.out.println("Mensaje encritado: " + mensajeEncriptado);
 
-        String mensajeDesencriptado = Desencriptar(mensajeEncriptado, clave);
+        String mensajeDesencriptado = Desencriptar(mensajeEncriptado,c);
         System.out.println("Mensaje desencritado: " + mensajeDesencriptado);
     }// end main
 }// end clas

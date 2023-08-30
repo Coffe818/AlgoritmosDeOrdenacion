@@ -1,5 +1,7 @@
 package Contrasenas;
 
+import java.util.Random;
+
 import javax.swing.JOptionPane;
 
 public class Contrasenas {
@@ -46,20 +48,46 @@ public class Contrasenas {
         Calificar(caracteres);
     }// end Validar
 
+    public static String GenerarContrasena() {
+        StringBuilder passwordBuilder = new StringBuilder();
+
+        Random random = new Random();
+        for (int i = 0; i < 14; i++) {// la contrasena sera de 14 caracteres
+            int NumRandom = random.nextInt(4); // Genera un número aleatorio entre 0 y 3
+
+            switch (NumRandom) {
+                case 0: // Agregar letra minúscula
+                    char lowercase = (char) (random.nextInt(26) + 'a');
+                    passwordBuilder.append(lowercase);
+                    break;
+                case 1: // Agregar letra mayúscula
+                    char uppercase = (char) (random.nextInt(26) + 'A');
+                    passwordBuilder.append(uppercase);
+                    break;
+                case 2: // Agregar número
+                    char digit = (char) (random.nextInt(10) + '0');
+                    passwordBuilder.append(digit);
+                    break;
+                case 3: // Agregar caracter especial
+                    char specialChar = SPECIAL_CHARACTERS.charAt(random.nextInt(SPECIAL_CHARACTERS.length()));
+                    passwordBuilder.append(specialChar);
+                    break;
+            }// end switch
+        } // end for
+        return passwordBuilder.toString();
+    }// end GenerarContrasena
+
     public static void main(String[] args) {
 
         int opcion;
+        String password;
+        // Solicitar contraseña hasta que tenga el tamano correcto
         do {
-            String password;
-
-            // Solicitar contraseña hasta que tenga el tamaño deseado
-            do {
-                password = JOptionPane.showInputDialog(null, "Ingrese contraseña para validar:");
-                password = password.trim(); // Recortar espacios en blanco al inicio y al final
-            } while (password.length() < 8 || password.length() > 17);
-
-            ValidarGeneral(password);
-
+            password = JOptionPane.showInputDialog(null, "Ingrese contraseña para validar:");
+            password = password.trim(); // Recortar espacios en blanco al inicio y al final
+        } while (password.length() < 8 || password.length() > 17);
+        ValidarGeneral(password);
+        do {
             opcion = Integer.parseInt(JOptionPane.showInputDialog(null, "=======MENU VALIDAR CONTRASEÑAS ======="
                     + "\nContraseña: " + password + "\nCalificación: " + Resultado()
                     + "\n1. Cambiar Contraseña \n2. Crear Contraseña segura \n0. Salir"));
@@ -68,12 +96,16 @@ public class Contrasenas {
                 case 0:
                     break;
                 case 1:
-                    password = JOptionPane.showInputDialog(null, "Ingrese contraseña para validar?");
-                    password = password.trim(); // Recortar espacios en blanco al inicio y al final
+                    do {
+                        password = JOptionPane.showInputDialog(null, "Ingrese contraseña para validar:");
+                        password = password.trim(); // Recortar espacios en blanco al inicio y al final
+                    } while (password.length() < 8 || password.length() > 17);
                     ValidarGeneral(password);
                     break;
                 case 2:
-                    // Aquí irá el método para crear contraseña segura cuando lo tengas
+                    password = GenerarContrasena();
+                    JOptionPane.showMessageDialog(null, "Contraseña segura generada: " + password);
+                    ValidarGeneral(password);
                     break;
                 default:
                     break;

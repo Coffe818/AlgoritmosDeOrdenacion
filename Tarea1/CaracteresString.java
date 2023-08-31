@@ -50,7 +50,7 @@ public class CaracteresString {
         return "Num de palabras: " + palabras.length;
     }// end NumPalabras
 
-    public String PalabrasVocal(String s) {
+    public static String PalabrasVocal(String s) {
         vocales = 0;
         for (String palabras : palabras) {
             if (!palabras.isEmpty() && isVowel(palabras.charAt(0))) {
@@ -60,7 +60,7 @@ public class CaracteresString {
         return "Palabras que inician con vocal: " + vocales;
     }// end palabrasVocal
 
-    public String InvertirCaracteres(String s) {
+    public static String InvertirCaracteres(String s) {
         StringBuilder reversa = new StringBuilder();// el StringBuilder "ayuda a crear cadenas de texto ams eficientes"
         for (int i = s.length() - 1; i >= 0; i--) {// for de reversa
             reversa.append(s.charAt(i)); // el append es para agregar
@@ -71,7 +71,7 @@ public class CaracteresString {
     // METODOS PARA ENCRIPTAR Y DESENCRIPTAR EN CIFRADO CESAR
     static int desplazar = 5;
 
-    public String Encriptar(String mensaje, int desplazar) {
+    public static String Encriptar(String mensaje, int desplazar) {
         // Algoritmo de sustitución simple
         StringBuilder mensajeEncriptado = new StringBuilder();
         for (char c : mensaje.toCharArray()) {
@@ -80,7 +80,7 @@ public class CaracteresString {
         return mensajeEncriptado.toString();
     }
 
-    public String Desencriptar(String mensajeEncriptado, int desplazar) {
+    public static String Desencriptar(String mensajeEncriptado, int desplazar) {
         // Desencriptar el mensaje usando el algoritmo inverso
         StringBuilder mensajeDesencriptado = new StringBuilder();
         for (char c : mensajeEncriptado.toCharArray()) {
@@ -93,20 +93,20 @@ public class CaracteresString {
 
         s = JOptionPane.showInputDialog(null, "Ingrese el String: ");
         String clave = JOptionPane.showInputDialog(null, "Ingrese clave: ");
-        CaracteresString cs = new CaracteresString();
+        
 
         int opcion;
         do {
-            String encriptado = cs.Encriptar(s, desplazar);
+            String encriptado = Encriptar(s, desplazar);
             String mensajeEncriptado = EncriptacionJulioVerne.Encriptar(s, clave);
             String mensajeDesencriptado = EncriptacionJulioVerne.Desencriptar(mensajeEncriptado, clave);
             opcion = Integer.parseInt(JOptionPane.showInputDialog(null, "=======MENU CARACTARES STRING ======="
                     + "\nString: " + s + "\nLongitud del String: " + s.length() + "\n" + NumLetras(s) + "\n"
                     + NumPalabras(s)
                     + "\nConverit Mayus: " + s.toUpperCase() + "\nConvertir Minus: " + s.toLowerCase() + "\n"
-                    + cs.PalabrasVocal(s)
-                    + "\nPalabra invertida: " + cs.InvertirCaracteres(s) + "\nMensaje ecnriptado: " + encriptado
-                    + "\nMensaje desncriptado: " + cs.Desencriptar(encriptado, desplazar) + "\nEncriptado Julio Verne: "
+                    + PalabrasVocal(s)
+                    + "\nPalabra invertida: " + InvertirCaracteres(s) + "\nMensaje ecnriptado: " + encriptado
+                    + "\nMensaje desncriptado: " + Desencriptar(encriptado, desplazar) + "\nEncriptado Julio Verne: "
                     + mensajeEncriptado
                     + "\nDesencriptado Julio Verne: " + mensajeDesencriptado + "\n1. Cambiar String "
                     + "\n0. Salir"));

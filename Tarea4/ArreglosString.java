@@ -80,8 +80,7 @@ public class ArreglosString {
         List<String> nombresVocales = new ArrayList<>();
 
         for (char vocal : vocales) {
-            nombresVocales.addAll(NombresEmpiezan(Character.toLowerCase(vocal)));
-            nombresVocales.addAll(NombresEmpiezan(Character.toUpperCase(vocal)));
+            nombresVocales.addAll(NombresEmpiezan(vocal));
         } // for que agrega los nombres que empiezen sin iportar si es mayus o minus
 
         return nombresVocales;
@@ -93,8 +92,7 @@ public class ArreglosString {
         List<String> nombresConsonantes = new ArrayList<>();
 
         for (char consonante : consonantes) {
-            nombresConsonantes.addAll(NombresEmpiezan(Character.toLowerCase(consonante)));
-            nombresConsonantes.addAll(NombresEmpiezan(Character.toUpperCase(consonante)));
+            nombresConsonantes.addAll(NombresEmpiezan(consonante));
         } // end //for que agrega los nombres que empiezen sin iportar si es mayus o minus
 
         return nombresConsonantes;
@@ -114,7 +112,7 @@ public class ArreglosString {
             opcion = Integer.parseInt(JOptionPane.showInputDialog(null, "=======MENU ARREGLOS STRING ======="
                     + "\n0.Salir \n1. Agregar String\n2. Datos del Sting \n3. Convertir e Invertir \n4. Encriptamiento \n5. Buscar nombre"
                     + "\n6. Nombres empiezan con x \n7  Nombres terminan con x\n8. Nombres empieza con vocal"
-                    + "\n9. Nombres empieza con consonante\n10. Nombre/Apellido "));
+                    + "\n9. Nombres empieza con consonante\n10. Nombre/Apellido \n100. Imprimir lista completa"));
             switch (opcion) {
                 case 0:
 
@@ -177,11 +175,18 @@ public class ArreglosString {
                     JOptionPane.showMessageDialog(null, "Nombres que empiezan con Vocal: " + NombresEmpiezanVocal());
                     break;
                 case 9:
-                    JOptionPane.showMessageDialog(null, "Nombres que empiezan con Consonante: " + NombresEmpiezanConsonante());
+                    JOptionPane.showMessageDialog(null,
+                            "Nombres que empiezan con Consonante: " + NombresEmpiezanConsonante());
                     break;
                 case 10:
+                    String nombre1 = JOptionPane.showInputDialog(null, "Que nombre quieres buscar: ").trim();
+                    String apellido = JOptionPane.showInputDialog(null, "Que apellido quieres buscar: ").trim();
+                    nombre=nombre1+" "+apellido;
+                    BuscarNombre(nombre);
                     break;
-
+                case 100:
+                    JOptionPane.showInputDialog(null, "Seleccione un numero de la lista:\n" + ImprimirArray());
+                    break;
                 default:
                     break;
             }// end switch

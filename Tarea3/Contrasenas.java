@@ -31,6 +31,11 @@ public class Contrasenas {
     }// end resultado
 
     public static void ValidarGeneral(String password) {
+        mayus = false;
+        minus = false;
+        digitos = false;
+        caracteres = false;
+        calificacion=0;
         for (char c : password.toCharArray()) {
             if (Character.isUpperCase(c)) {
                 mayus = true;

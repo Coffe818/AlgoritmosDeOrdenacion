@@ -28,10 +28,11 @@ public class ArreglosString {
     public static void BuscarNombre(String nombre) {
         List<String> nombresEncontrados = new ArrayList<>();
         String nomEnco = "Nombres encontrados:\n";
+        
         for (String nombreLista : Nombres) {
-            if (nombreLista.equalsIgnoreCase(nombre)) { // Ignorar diferencias de mayúsculas y minúsculas
+            if (nombreLista.toLowerCase().contains(nombre.toLowerCase())) {// Ignorar diferencias de mayúsculas y minúsculas
                 nombresEncontrados.add(nombreLista);
-            } // end if para agregar el nombre
+             } // end if para agregar el nombre
         } // end for que recorre toda la lista, y los agreaga a nombreLista
 
         if (nombresEncontrados.isEmpty()) {

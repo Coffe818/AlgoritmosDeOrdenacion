@@ -27,35 +27,66 @@ public class ArreglosString {
 
     public static void BuscarNombre(String nombre) {
         List<String> nombresEncontrados = new ArrayList<>();
+        String nomEnco = "Nombres encontrados:\n";
         for (String nombreLista : Nombres) {
             if (nombreLista.equalsIgnoreCase(nombre)) { // Ignorar diferencias de mayúsculas y minúsculas
                 nombresEncontrados.add(nombreLista);
-            }//end if para agregar el nombre
-        }//end for que recorre toda la lista, y los agreaga a nombreLista 
+            } // end if para agregar el nombre
+        } // end for que recorre toda la lista, y los agreaga a nombreLista
 
         if (nombresEncontrados.isEmpty()) {
-            JOptionPane.showInputDialog(null, "No se encontraron nombres que coincidan con la búsqueda.");
+            JOptionPane.showMessageDialog(null, "No se encontraron nombres que coincidan con la búsqueda.");
         } else {
-            System.out.println("Nombres encontrados que coinciden con la búsqueda:");
             for (String encontrado : nombresEncontrados) {
-                JOptionPane.showInputDialog(null, encontrado);
-            }//end for para imprimir los que encontro   
-        }//end if para ver si esta vacia o no 
-    }//end BuscarNombre
+                nomEnco += encontrado + "\n";
+            } // end for para imprimir los que encontro
+            JOptionPane.showMessageDialog(null, nomEnco);
+        } // end if para ver si esta vacia o no
+    }// end BuscarNombre
+
+    public static List<String> NombresEmpiezan(char letra) {
+        ArrayList<String> nombresFiltrados = new ArrayList<>();
+        char letraMinuscula = Character.toLowerCase(letra);
+        char letraMayuscula = Character.toUpperCase(letra);
+
+        for (String nombre : Nombres) {
+            if (nombre.length() > 0 && (nombre.charAt(0) == letraMinuscula || nombre.charAt(0) == letraMayuscula)) {
+                nombresFiltrados.add(nombre);
+            } // end if, similar a un ignore case
+        } // end for para agregar los nomgres para luego compararlos
+
+        return nombresFiltrados;
+    }// end Listar nombres que empiezan
+
+    public static List<String> NombresTerminan(char letra) {
+        List<String> nombresFiltrados = new ArrayList<>();
+        char letraMinuscula = Character.toLowerCase(letra);
+        char letraMayuscula = Character.toUpperCase(letra);
+
+        for (String nombre : Nombres) {
+            if (nombre.length() > 0 && (nombre.charAt(nombre.length() - 1) == letraMinuscula
+                    || nombre.charAt(nombre.length() - 1) == letraMayuscula)) {
+                nombresFiltrados.add(nombre);
+            } // end if, similar a un ignore case
+        } // end for para agregar los nomgres para luego compararlos
+
+        return nombresFiltrados;
+    }// end listar nombres que terminan
 
     public static void main(String[] args) {
         int opcion;
         String nombre;
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 5; i++) {
             nombre = JOptionPane.showInputDialog(null, "Agrega un nombre: ").trim();
             Nombres.add(nombre);
         }
         int valor;
         String num;
+        char c;
         do {
             opcion = Integer.parseInt(JOptionPane.showInputDialog(null, "=======MENU ARREGLOS STRING ======="
-                    + "\n0.Salir \n1. Agregar String\n2. Datos del Sting \n3. Convertir e Invertir \n4. Encriptamiento \n5.Buscar nombre"
-                    + "\n6. Nombres empiezan con x \n7  Nombres terminan con x\n8.  Nombres empieza con vocal"
+                    + "\n0.Salir \n1. Agregar String\n2. Datos del Sting \n3. Convertir e Invertir \n4. Encriptamiento \n5. Buscar nombre"
+                    + "\n6. Nombres empiezan con x \n7  Nombres terminan con x\n8. Nombres empieza con vocal"
                     + "\n9. Nombres empieza con consonante\n10. Nombre/Apellido "));
             switch (opcion) {
                 case 0:
@@ -107,8 +138,13 @@ public class ArreglosString {
                     BuscarNombre(nombre);
                     break;
                 case 6:
+                    c = JOptionPane.showInputDialog(null, "Con cual letra:\n").charAt(0);
+                    JOptionPane.showMessageDialog(null, NombresEmpiezan(c));
+
                     break;
                 case 7:
+                    c = JOptionPane.showInputDialog(null, "Con cual letra:\n").charAt(0);
+                    JOptionPane.showMessageDialog(null, NombresTerminan(c));
                     break;
                 case 8:
                     break;

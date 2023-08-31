@@ -2,6 +2,8 @@ package Tarea4;
 
 import Tarea1.*;
 import java.util.ArrayList;
+
+import javax.print.DocFlavor.STRING;
 import javax.swing.JOptionPane;
 
 public class ArreglosString {
@@ -25,12 +27,16 @@ public class ArreglosString {
 
     public static void main(String[] args) {
         int opcion;
-        String nombre = JOptionPane.showInputDialog(null, "Agrega un nombre: ").trim();
-        Nombres.add(nombre);
-        
+        String nombre;
+        for (int i = 0; i < 10; i++) {
+            nombre = JOptionPane.showInputDialog(null, "Agrega un nombre: ").trim();
+            Nombres.add(nombre);
+        }
+        int valor;
+        String nom;
         do {
             opcion = Integer.parseInt(JOptionPane.showInputDialog(null, "=======MENU ARREGLOS STRING ======="
-                    + "\n1. Agregar String\n2. Datos del Sting \n3. Convertir e Invertir \n4. Encriptamiento"));
+                    + "\n0.Salir \n1. Agregar String\n2. Datos del Sting \n3. Convertir e Invertir \n4. Encriptamiento"));
             switch (opcion) {
                 case 0:
 
@@ -40,18 +46,39 @@ public class ArreglosString {
                     Nombres.add(nombre);
                     break;
                 case 2:
-                    int valor;
                     valor = Integer.parseInt(
                             JOptionPane.showInputDialog(null, "Seleccione un numero de la lista:\n" + ImprimirArray()));
-                    String nom = Nombres.get(valor);
+                    nom = Nombres.get(valor);
                     JOptionPane.showMessageDialog(null,
-                            "======Datos del nombre=====\nNombre: " + nom + "\nLongitud del String: " + nom.length() + "\n" + CaracteresString.NumLetras(nom) + "\n"
+                            "======Datos del nombre=====\nNombre: " + nom + "\nLongitud del String: " + nom.length()
+                                    + "\n" + CaracteresString.NumLetras(nom) + "\n"
                                     + CaracteresString.NumPalabras(nom));
                     break;
                 case 3:
-
+                    valor = Integer.parseInt(
+                            JOptionPane.showInputDialog(null, "Seleccione un numero de la lista:\n" + ImprimirArray()));
+                    nom = Nombres.get(valor);
+                    JOptionPane.showMessageDialog(null,
+                            "======Converir e Invertir=====\nNombre: " + nom + "\nConverit Mayus: " + nom.toUpperCase()
+                                    + "\nConvertir Minus: " + nom.toLowerCase() + "\n"
+                                    + CaracteresString.PalabrasVocal(nom)
+                                    + "\nPalabra invertida: " + CaracteresString.InvertirCaracteres(nom));
                     break;
                 case 4:
+                valor = Integer.parseInt(
+                            JOptionPane.showInputDialog(null, "Seleccione un numero de la lista:\n" + ImprimirArray()));
+                    nom = Nombres.get(valor);
+                String clave=JOptionPane.showInputDialog(null, "Ingrese una clave para encriptar");
+                String encriptadoCesar = CaracteresString.Encriptar(nom, 5);
+                String desencriptadoCesar =CaracteresString.Desencriptar(encriptadoCesar, 5);
+                String mensajeEncriptado = EncriptacionJulioVerne.Encriptar(nom, clave);
+                String mensajeDesencriptado = EncriptacionJulioVerne.Desencriptar(mensajeEncriptado, clave);
+                
+                JOptionPane.showMessageDialog(null,
+                            "======Encriptados y Desencriptados =====\nNombre: " + nom +"\nMensaje ecnriptado: " + encriptadoCesar
+                            + "\nMensaje desncriptado: " + desencriptadoCesar + "\nEncriptado Julio Verne: "
+                            + mensajeEncriptado
+                            + "\nDesencriptado Julio Verne: " + mensajeDesencriptado);
 
                     break;
                 default:

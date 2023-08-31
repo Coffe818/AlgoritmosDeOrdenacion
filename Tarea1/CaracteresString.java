@@ -4,7 +4,7 @@ import javax.swing.JOptionPane;
 
 public class CaracteresString {
     static String s = "";
-    String[] palabras;
+    static String[] palabras;
     static int vocales = 0;
     static int consonantes = 0;
     static int digito = 0;
@@ -17,7 +17,7 @@ public class CaracteresString {
     }// regresa verdadero si el char que pide es una vocal, expetuando los acentos
      // porque no los se poner
 
-    public String NumLetras(String s) {
+    public static String NumLetras(String s) {
 
         for (char c : s.toCharArray()) {
             if (Character.isLetter(c)) {// primero ques ea letra
@@ -41,7 +41,7 @@ public class CaracteresString {
                 + espacios + "\nCar. Especiales: " + especial;
     }// end NumLetras
 
-    public String NumPalabras(String s) {
+    public static String NumPalabras(String s) {
         palabras = s.trim().split("\\s+");
         // aquie se crea un arreglo en el cual se agrega el string "s.trim()", y el
         // ".split()", es para dividir el String "s" dependiedno el patron
@@ -94,27 +94,28 @@ public class CaracteresString {
         s = JOptionPane.showInputDialog(null, "Ingrese el String: ");
         String clave = JOptionPane.showInputDialog(null, "Ingrese clave: ");
         CaracteresString cs = new CaracteresString();
-        
+
         int opcion;
         do {
             String encriptado = cs.Encriptar(s, desplazar);
             String mensajeEncriptado = EncriptacionJulioVerne.Encriptar(s, clave);
             String mensajeDesencriptado = EncriptacionJulioVerne.Desencriptar(mensajeEncriptado, clave);
             opcion = Integer.parseInt(JOptionPane.showInputDialog(null, "=======MENU CARACTARES STRING ======="
-                    + "\nString: " + s + "\nLongitud del String: " + s.length() + "\n" + cs.NumLetras(s) + "\n"
-                    + cs.NumPalabras(s)
+                    + "\nString: " + s + "\nLongitud del String: " + s.length() + "\n" + NumLetras(s) + "\n"
+                    + NumPalabras(s)
                     + "\nConverit Mayus: " + s.toUpperCase() + "\nConvertir Minus: " + s.toLowerCase() + "\n"
                     + cs.PalabrasVocal(s)
                     + "\nPalabra invertida: " + cs.InvertirCaracteres(s) + "\nMensaje ecnriptado: " + encriptado
-                    + "\nMensaje desncriptado: " + cs.Desencriptar(encriptado, desplazar) +"\nEncriptado Julio Verne: "+ mensajeEncriptado
-                    +"\nDesencriptado Julio Verne: "+mensajeDesencriptado+ "\n1. Cambiar String "
+                    + "\nMensaje desncriptado: " + cs.Desencriptar(encriptado, desplazar) + "\nEncriptado Julio Verne: "
+                    + mensajeEncriptado
+                    + "\nDesencriptado Julio Verne: " + mensajeDesencriptado + "\n1. Cambiar String "
                     + "\n0. Salir"));
             switch (opcion) {
                 case 0:
-                    
+
                     break;
                 case 1:
-                     s = JOptionPane.showInputDialog(null, "Ingrese nuevo String: ");
+                    s = JOptionPane.showInputDialog(null, "Ingrese nuevo String: ");
                     break;
 
                 default:

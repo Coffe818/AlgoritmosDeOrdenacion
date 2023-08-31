@@ -28,11 +28,12 @@ public class ArreglosString {
     public static void BuscarNombre(String nombre) {
         List<String> nombresEncontrados = new ArrayList<>();
         String nomEnco = "Nombres encontrados:\n";
-        
+
         for (String nombreLista : Nombres) {
-            if (nombreLista.toLowerCase().contains(nombre.toLowerCase())) {// Ignorar diferencias de mayúsculas y minúsculas
+            if (nombreLista.toLowerCase().contains(nombre.toLowerCase())) {// Ignorar diferencias de mayúsculas y
+                                                                           // minúsculas
                 nombresEncontrados.add(nombreLista);
-             } // end if para agregar el nombre
+            } // end if para agregar el nombre
         } // end for que recorre toda la lista, y los agreaga a nombreLista
 
         if (nombresEncontrados.isEmpty()) {
@@ -73,6 +74,31 @@ public class ArreglosString {
 
         return nombresFiltrados;
     }// end listar nombres que terminan
+
+    public static List<String> NombresEmpiezanVocal() {
+        char[] vocales = { 'a', 'e', 'i', 'o', 'u' };
+        List<String> nombresVocales = new ArrayList<>();
+
+        for (char vocal : vocales) {
+            nombresVocales.addAll(NombresEmpiezan(Character.toLowerCase(vocal)));
+            nombresVocales.addAll(NombresEmpiezan(Character.toUpperCase(vocal)));
+        } // for que agrega los nombres que empiezen sin iportar si es mayus o minus
+
+        return nombresVocales;
+    }// end Nombres empiezan Vocal
+
+    public static List<String> NombresEmpiezanConsonante() {
+        char[] consonantes = { 'b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'q', 'r', 's', 't', 'v', 'w',
+                'x', 'y', 'z' };
+        List<String> nombresConsonantes = new ArrayList<>();
+
+        for (char consonante : consonantes) {
+            nombresConsonantes.addAll(NombresEmpiezan(Character.toLowerCase(consonante)));
+            nombresConsonantes.addAll(NombresEmpiezan(Character.toUpperCase(consonante)));
+        } // end //for que agrega los nombres que empiezen sin iportar si es mayus o minus
+
+        return nombresConsonantes;
+    }// end Nombres empiezan con consonante
 
     public static void main(String[] args) {
         int opcion;
@@ -148,8 +174,10 @@ public class ArreglosString {
                     JOptionPane.showMessageDialog(null, NombresTerminan(c));
                     break;
                 case 8:
+                    JOptionPane.showMessageDialog(null, "Nombres que empiezan con Vocal: " + NombresEmpiezanVocal());
                     break;
                 case 9:
+                    JOptionPane.showMessageDialog(null, "Nombres que empiezan con Consonante: " + NombresEmpiezanConsonante());
                     break;
                 case 10:
                     break;

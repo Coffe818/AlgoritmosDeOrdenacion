@@ -71,7 +71,7 @@ public class ReproducirAudio {
                  * palabras = "7 millones" + " " +
                  * "ochocientos cianuenta y dos mil cuatrocientos setenta y seis"; grupo =2
                  */
-            }//end if 
+            } // end if
 
             parteEntera /= 1000;// 7852476/1000 = 7852 luego se repite con 852 y dara ocho ciento cincuenta y
                                 // dos, pero como ahora grupo actual es 1, va a poner mil
@@ -96,15 +96,30 @@ public class ReproducirAudio {
     }
 
     public static void main(String[] args) {
-        String input = JOptionPane.showInputDialog("Ingrese un número o un texto:");
+        String texto = JOptionPane.showInputDialog("Ingrese un número o un texto:");
+        int opcion;
+        do {
+            if (esNumero(texto)) {
+                double numero = Double.parseDouble(texto);
+                String numeroEnPalabras = ConvertirNumeroEnPalabras(numero);
+                opcion = Integer.parseInt(JOptionPane.showInputDialog(null, "=======MENU AUDIO =======" +
+                        "\nNumero: " + numero + "\nTexto: "+numeroEnPalabras+"\n1. Cambiar el texto \n2. Reproducir audio"));
+            } else {
+                opcion = Integer.parseInt(JOptionPane.showInputDialog(null, "=======MENU AUDIO =======" +
+                        "\nTexto: " + texto + "\n1. Cambiar el texto \n2. Reproducir audio"));
+            }
 
+            switch (opcion) {
+                case 1:
+                    texto = JOptionPane.showInputDialog("Ingrese un número o un texto:");
+                    break;
+
+                default:
+                    break;
+            }
+
+        } while (opcion != 0);
         // Verificar si el input es un número o un string
-        if (esNumero(input)) {
-            double numero = Double.parseDouble(input);
-            String numeroEnPalabras = ConvertirNumeroEnPalabras(numero);
-            JOptionPane.showMessageDialog(null, "Número " + numero + " en palabras: " + numeroEnPalabras);
-        } else {
 
-        }
     }
 }

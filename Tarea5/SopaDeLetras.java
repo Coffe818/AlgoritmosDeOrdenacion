@@ -5,6 +5,10 @@ import java.util.Scanner;
 
 public class SopaDeLetras {
     static String[][] ARRAY = new String[15][15];
+    static int maxRandom;
+    static int filaAleatoria;
+    static int columnaAleatoria;
+    static Random random = new Random();
 
     public static void AgregarHorizontal(String palabra, int filas, int columnas) {
         palabra = palabra.toUpperCase();
@@ -24,11 +28,21 @@ public class SopaDeLetras {
                     ARRAY[filas][columnas + i] = "" + palabra.charAt(i);
                 } // end for para agregar la palabra
             } else {
-                System.out.println("Error de NO espacio disponible en HORIZONTAL con palabra " + palabra);
+                maxRandom = 21 - palabra.length();
+                filaAleatoria = random.nextInt(maxRandom);
+                columnaAleatoria = random.nextInt(maxRandom);
+                AgregarHorizontal(palabra, filaAleatoria, columnaAleatoria);
+                // System.out.println("Error de NO espacio disponible en HORIZONTAL con palabra
+                // " + palabra);
             } // end if
         } else {
-            System.out.println(
-                    "Error de NO cabe en el array en HORIZONTAL por la posicion que se le dio en palabra" + palabra);
+            maxRandom = 21 - palabra.length();
+            filaAleatoria = random.nextInt(maxRandom);
+            columnaAleatoria = random.nextInt(maxRandom);
+            AgregarHorizontal(palabra, filaAleatoria, columnaAleatoria);
+            // System.out.println(
+            // "Error de NO cabe en el array en HORIZONTAL por la posicion que se le dio en
+            // palabra" + palabra);
         } // end if
     }
 
@@ -50,11 +64,21 @@ public class SopaDeLetras {
                     ARRAY[filas + i][columnas] = "" + palabra.charAt(i);
                 } // sirve para ver si la el espacio esta ocupado
             } else {
-                System.out.println("Error de NO espacio disponible en VERTICAL con palabra " + palabra);
+                maxRandom = 21 - palabra.length();
+                filaAleatoria = random.nextInt(maxRandom);
+                columnaAleatoria = random.nextInt(maxRandom);
+                AgregarVertical(palabra, filaAleatoria, columnaAleatoria);
+                // System.out.println("Error de NO espacio disponible en VERTICAL con palabra "
+                // + palabra);
             } // end if
         } else {
-            System.out.println(
-                    "Error de NO cabe en el array en VERTICAL por la posicion que se le dio en palabra" + palabra);
+            maxRandom = 21 - palabra.length();
+            filaAleatoria = random.nextInt(maxRandom);
+            columnaAleatoria = random.nextInt(maxRandom);
+            AgregarVertical(palabra, filaAleatoria, columnaAleatoria);
+            // System.out.println(
+            // "Error de NO cabe en el array en VERTICAL por la posicion que se le dio en
+            // palabra" + palabra);
         } // end if
     }
 
@@ -76,18 +100,32 @@ public class SopaDeLetras {
                     ARRAY[filas + i][columnas + i] = "" + palabra.charAt(i);
                 } // sirve para ver si la el espacio esta ocupado
             } else {
-                System.out.println("Error de NO espacio disponible en DIAGONAL con palabra " + palabra);
+                maxRandom = 21 - palabra.length();
+                filaAleatoria = random.nextInt(maxRandom);
+                columnaAleatoria = random.nextInt(maxRandom);
+                AgregarDiagonal(palabra, filaAleatoria, columnaAleatoria);
+                // System.out.println("Error de NO espacio disponible en DIAGONAL con palabra "
+                // + palabra);
             } // end if
         } else {
-            System.out.println(
-                    "Error de NO cabe en el array en DIAGONAL por la posicion que se le dio en palabra" + palabra);
+            maxRandom = 21 - palabra.length();
+            filaAleatoria = random.nextInt(maxRandom);
+            columnaAleatoria = random.nextInt(maxRandom);
+            AgregarDiagonal(palabra, filaAleatoria, columnaAleatoria);
+            // System.out.println(
+            // "Error de NO cabe en el array en DIAGONAL por la posicion que se le dio en
+            // palabra" + palabra);
         } // end if
     }
 
     public static void ImprimirArray() {
         for (int i = 0; i < ARRAY.length; i++) {
             for (int j = 0; j < ARRAY[i].length; j++) {
-                System.out.print(ARRAY[i][j] + " ");
+                if (ARRAY[i][j] == null) {
+                    System.out.print("% ");
+                } else {
+                    System.out.print(ARRAY[i][j] + " ");
+                }
             }
             System.out.println(); // Agrega una nueva línea después de imprimir una fila
         } // end for
@@ -95,13 +133,13 @@ public class SopaDeLetras {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        Random random = new Random();
+
         for (int i = 0; i < 5; i++) {
             System.out.print("Ingresa una palabra: ");
             String palabra = scanner.nextLine();
-            int maxRandom = 21 - palabra.length();
-            int filaAleatoria = random.nextInt(maxRandom);
-            int columnaAleatoria = random.nextInt(maxRandom);
+            maxRandom = 21 - palabra.length();
+            filaAleatoria = random.nextInt(maxRandom);
+            columnaAleatoria = random.nextInt(maxRandom);
             int opcionAleatoria = random.nextInt(3);
 
             if (opcionAleatoria == 0) {

@@ -93,17 +93,19 @@ public class ReproducirAudio {
         } // end if para parte decimal
 
         return palabras;
-    }
+    }// end ConvertirNumeroEnPalabras
 
     public static void main(String[] args) {
         String texto = JOptionPane.showInputDialog("Ingrese un número o un texto:");
         int opcion;
+        String numeroEnPalabras;
         do {
             if (esNumero(texto)) {
                 double numero = Double.parseDouble(texto);
-                String numeroEnPalabras = ConvertirNumeroEnPalabras(numero);
+                numeroEnPalabras = ConvertirNumeroEnPalabras(numero);
                 opcion = Integer.parseInt(JOptionPane.showInputDialog(null, "=======MENU AUDIO =======" +
-                        "\nNumero: " + numero + "\nTexto: "+numeroEnPalabras+"\n1. Cambiar el texto \n2. Reproducir audio"));
+                        "\nNumero: " + numero + "\nTexto: " + numeroEnPalabras
+                        + "\n1. Cambiar el texto \n2. Reproducir audio"));
             } else {
                 opcion = Integer.parseInt(JOptionPane.showInputDialog(null, "=======MENU AUDIO =======" +
                         "\nTexto: " + texto + "\n1. Cambiar el texto \n2. Reproducir audio"));
@@ -113,7 +115,15 @@ public class ReproducirAudio {
                 case 1:
                     texto = JOptionPane.showInputDialog("Ingrese un número o un texto:");
                     break;
-
+                case 2:
+                    if (esNumero(texto)) {
+                        double numero = Double.parseDouble(texto);
+                        numeroEnPalabras = ConvertirNumeroEnPalabras(numero);
+                        TextToSpeech.generarSonidoDesdeTexto(numeroEnPalabras);
+                    } else {
+                        TextToSpeech.generarSonidoDesdeTexto(texto);
+                    }
+                    break;
                 default:
                     break;
             }

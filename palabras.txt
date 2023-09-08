@@ -1,0 +1,96 @@
+Hola
+Adiós
+Por favor
+Gracias
+De nada
+Sí
+No
+Bien
+Mal
+Ok
+Entiendo
+Genial
+Amigo
+Amiga
+Qué
+Cómo
+Dónde
+Cuándo
+Quién
+Por qué
+Porque
+Tal vez
+Quizás
+A veces
+Siempre
+Nunca
+Ayuda
+Gusto
+Mucho
+Poco
+Más
+Menos
+Aquí
+Allí
+Ahora
+Después
+Antes
+Hoy
+Mañana
+Tarde
+Noche
+Primero
+Último
+Grande
+Pequeño
+Nuevo
+Viejo
+Bienvenido
+Feliz
+Triste
+Enfadado
+Sorprendido
+Contento
+Aburrido
+Interesante
+Divertido
+Difícil
+Fácil
+Rápido
+Lento
+Bonito
+Feo
+Rico
+Pobre
+Importante
+Inútil
+Cierto
+Falso
+Claro
+Obvio
+Tal vez
+Correcto
+Incorrecto
+Aquí está
+No sé
+Entonces
+Pero
+También
+Aún
+Así
+Por supuesto
+Claro que sí
+Lo siento
+Perdón
+Ayúdame
+Por favor, espera
+Tengo que irme
+No te preocupes
+Estoy ocupado
+Estoy libre
+Estoy cansado
+Estoy feliz
+Estoy triste
+Estoy emocionado
+Estoy aburrido
+    

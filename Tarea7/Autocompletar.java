@@ -17,7 +17,7 @@ public class Autocompletar {
         CargarDesdeArchivo();
         StringBuilder palabraCoinciden = new StringBuilder();
         for (String palabra : palabrasComunes) {
-            if (palabra.startsWith(dosletras)) {
+            if ((palabra.toLowerCase().startsWith(dosletras.toLowerCase()))) {
                 palabraCoinciden.append(palabra).append("\n");
             } // if para regresar la palabra si esta agregada
         } // end for para recorrer palabra por palabra que esten agregadas
@@ -79,7 +79,7 @@ public class Autocompletar {
             switch (opcion) {
                 case 1:
                     String primerosdos = JOptionPane.showInputDialog(null, "Ingrese dos letras para autocompletar: ");
-                    JOptionPane.showMessageDialog(null, "Las palabras que empiezan con " + primerosdos + " son:"
+                    JOptionPane.showMessageDialog(null, "Las palabras que empiezan con " + primerosdos + " son:\n"
                             + AutocompletarPalabra(primerosdos));
                     break;
                 case 2:

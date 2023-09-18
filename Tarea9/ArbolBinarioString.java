@@ -228,6 +228,10 @@ public class ArbolBinarioString {
         BuscarPorTextoInOrder(nodo.rchild, texto);
     }// end biscar por texto
 
+    public void Modificar(int nump, String texto){
+    BajaFisica(nump);
+    AgregarNodo(nump, texto);
+    }//end modificar
     public static void main(String[] args) {
         ArbolBinarioString Arbol = new ArbolBinarioString();
         int opcion;

@@ -1,4 +1,5 @@
 package Tarea9;
+
 import javax.swing.JOptionPane;
 
 //import javax.swing.JOptionPane;
@@ -7,9 +8,9 @@ import javax.swing.JOptionPane;
   pero como lo quiero mas especifico, copiare y pegare los metodos,
   pero intentare dejarlos para luego poder usarlos en otros programas*/
 
-
 public class ArbolBinarioString {
     static FormatoTabla FT = new FormatoTabla();
+
     public class Nodo {
         int numparrafo;
         String texto;
@@ -31,7 +32,7 @@ public class ArbolBinarioString {
 
     public void AgregarNodo(int np, String texto) {
         NuevoNodo = new Nodo(np, texto);
-    
+
         if (raiz == null) {
             raiz = NuevoNodo;
         } else {
@@ -56,7 +57,7 @@ public class ArbolBinarioString {
         } // end if else de raiz
     }// end Agregar Nodo
 
-public void BajaLogica(int nump) {
+    public void BajaLogica(int nump) {
         Nodo actual = raiz;
         while (actual != null) {
             if (actual.numparrafo == nump) {
@@ -148,13 +149,13 @@ public void BajaLogica(int nump) {
     public void ImprimirInOrder() {
         FT.AgregarColumnas(FT.Columnas("Num Parrafo", "Texto"));
         InOrder(raiz);
-         FT.ImprimirTabla();
+        FT.ImprimirTabla();
     }// end ImprimirInOrder
 
     public void ImprimirPostOrder() {
         FT.AgregarColumnas(FT.Columnas("Num Parrafo", "Texto"));
         PostOrder(raiz);
-         FT.ImprimirTabla();
+        FT.ImprimirTabla();
     }// end ImprimirPostOrder
 
     public int Profundidad(Nodo nodo) {
@@ -182,16 +183,50 @@ public void BajaLogica(int nump) {
         if (nodo == null) {
             return 0;
         } else {
-            int count=0;
+            int count = 0;
             if (nodo.estatus != 'B') {
-            count = 1;
+                count = 1;
             }
             count += CantidadNodos(nodo.lchild);
             count += CantidadNodos(nodo.rchild);
             return count;
         } // end if else que lleva el conteo
     }// end CantidadNodos
-    
+
+    public void ImprimirBuscarPorNumParrafoInOrder(int nump) {
+        FT.AgregarColumnas(FT.Columnas("Num Parrafo", "Texto"));
+        BuscarPorNumParrafoInOrder(raiz, nump);
+        FT.ImprimirTabla();
+    }// hace que se imprima 
+
+    private void BuscarPorNumParrafoInOrder(Nodo nodo, int nump) {
+        if (nodo == null || nodo.estatus == 'B') {
+            return;
+        }// salir en caso de que tenga baja logica
+        BuscarPorNumParrafoInOrder(nodo.lchild, nump);
+        if (nodo.numparrafo == nump) {
+            FT.AgregarDatos(FT.Datos(nodo.numparrafo, nodo.texto));
+        }//agrega el nodo que coincida con el numpero de parrafo buscado
+        BuscarPorNumParrafoInOrder(nodo.rchild, nump);
+    }//end buscar parrafo
+
+    // Agrega un método para buscar por texto usando recorrido inorder
+    public void ImprimirBuscarPorTextoInOrder(String texto) {
+        FT.AgregarColumnas(FT.Columnas("Num Parrafo", "Texto"));
+        BuscarPorTextoInOrder(raiz, texto);
+        FT.ImprimirTabla();
+    }//hace que se imprima
+
+    private void BuscarPorTextoInOrder(Nodo nodo, String texto) {
+        if (nodo == null || nodo.estatus == 'B') {
+            return;
+        }// salir en caso de que tenga baja logica
+        BuscarPorTextoInOrder(nodo.lchild, texto);
+        if (nodo.texto.contains(texto)) {
+            FT.AgregarDatos(FT.Datos(nodo.numparrafo, nodo.texto));
+        }// agreaga los nodos que tengan el texto buscado
+        BuscarPorTextoInOrder(nodo.rchild, texto);
+    }// end biscar por texto
 
     public static void main(String[] args) {
         ArbolBinarioString Arbol = new ArbolBinarioString();
@@ -209,6 +244,8 @@ public void BajaLogica(int nump) {
                     + "7. Profundidad\n"
                     + "8. Imprimir Nodo Raiz\n"
                     + "9. Cantidad de Nodos\n"
+                    + "10. Buscar por numero\n"
+                    + "11. Buscar por texto\n"
                     + "0. Salir\n"
                     + "Ingrese opción: \n"));
 
@@ -243,6 +280,15 @@ public void BajaLogica(int nump) {
                     break;
                 case 9:
                     JOptionPane.showMessageDialog(null, Arbol.CantidadNodos(raiz));
+                    break;
+                case 10:
+                    int numpar = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese número de párrafo: "));
+                    Arbol.ImprimirBuscarPorNumParrafoInOrder(numpar);
+                    break;
+                case 11:
+                    String text = JOptionPane.showInputDialog(null, "Ingrese texto a buscar: ");
+                    Arbol.ImprimirBuscarPorTextoInOrder(text);
+
                     break;
                 case 0:
                     break;

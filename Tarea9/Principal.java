@@ -4,8 +4,6 @@ import javax.swing.JOptionPane;
 import Tarea1.*;
 
 public class Principal {
-    static String textototal = "";
-
     
 
     public static void main(String[] args) {
@@ -18,7 +16,7 @@ public class Principal {
 
             opcion = Integer.parseInt(JOptionPane.showInputDialog(null, "====== MENU PRINCIPAL ======\n"
                     + "1. Alta de elemento\n"
-                    + "2. Contar caracteres y palabras\n"
+                    + "2. Contar caracteres y palabras\n"//mejorar
                     + "3. Cambiar texto de un párrafo\n"
                     + "4. Recorrido INORDER\n"
                     + "5. Recorrido PREORDER\n"
@@ -40,13 +38,13 @@ public class Principal {
                 case 1:
                     int nump = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese numero de parrafo: "));
                     String texto = JOptionPane.showInputDialog(null, "Ingrese texto: ");
-                    textototal += texto;
                     String textoEncriptado = EncriptacionJulioVerne.Encriptar(texto, clave);
                     arbol.AgregarNodo(nump, textoEncriptado);
                     break;
                 case 2:
+                    String textoCompleto= arbol.JuntarTexto(ArbolBinarioString.raiz);
                     JOptionPane.showMessageDialog(null,
-                            CaracteresString.NumLetras(textototal) + "\n" + CaracteresString.NumPalabras(textototal));
+                            CaracteresString.NumLetras(textoCompleto) + "\n" + CaracteresString.NumPalabras(textoCompleto));
                     break;
                 case 3:
                     int numpModificar = Integer

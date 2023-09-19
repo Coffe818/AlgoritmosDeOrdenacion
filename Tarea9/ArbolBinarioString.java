@@ -199,48 +199,48 @@ public class ArbolBinarioString {
         FT.AgregarColumnas(FT.Columnas("Num Parrafo", "Texto"));
         BuscarPorNumParrafoInOrder(raiz, nump);
         FT.ImprimirTabla();
-    }// hace que se imprima 
+    }// hace que se imprima
 
     private void BuscarPorNumParrafoInOrder(Nodo nodo, int nump) {
         if (nodo == null || nodo.estatus == 'B') {
             return;
-        }// salir en caso de que tenga baja logica
+        } // salir en caso de que tenga baja logica
         BuscarPorNumParrafoInOrder(nodo.lchild, nump);
         if (nodo.numparrafo == nump) {
             FT.AgregarDatos(FT.Datos(nodo.numparrafo, nodo.texto));
-        }//agrega el nodo que coincida con el numpero de parrafo buscado
+        } // agrega el nodo que coincida con el numpero de parrafo buscado
         BuscarPorNumParrafoInOrder(nodo.rchild, nump);
-    }//end buscar parrafo
+    }// end buscar parrafo
 
     // Agrega un método para buscar por texto usando recorrido inorder
     public void ImprimirBuscarPorTextoInOrder(String texto) {
         FT.AgregarColumnas(FT.Columnas("Num Parrafo", "Texto"));
         BuscarPorTextoInOrder(raiz, texto);
         FT.ImprimirTabla();
-    }//hace que se imprima
+    }// hace que se imprima
 
     private void BuscarPorTextoInOrder(Nodo nodo, String texto) {
         if (nodo == null || nodo.estatus == 'B') {
             return;
-        }// salir en caso de que tenga baja logica
+        } // salir en caso de que tenga baja logica
         BuscarPorTextoInOrder(nodo.lchild, texto);
         if (nodo.texto.contains(texto)) {
             FT.AgregarDatos(FT.Datos(nodo.numparrafo, nodo.texto));
-        }// agreaga los nodos que tengan el texto buscado
+        } // agreaga los nodos que tengan el texto buscado
         BuscarPorTextoInOrder(nodo.rchild, texto);
     }// end biscar por texto
 
-    public void Modificar(int nump, String texto){
-    BajaFisica(nump);
-    AgregarNodo(nump, texto);
-    }//end modificar
+    public void Modificar(int nump, String texto) {
+        BajaFisica(nump);
+        AgregarNodo(nump, texto);
+    }// end modificar
 
     public String ObtenerTextoInOrder(Nodo nodo) {
         StringBuilder textoCompleto = new StringBuilder();
         ObtenerTextoInOrderRecursivo(nodo, textoCompleto);
         return textoCompleto.toString();
-    }//end obtener texto (este lo imprime)
-    
+    }// end obtener texto (este lo imprime)
+
     private void ObtenerTextoInOrderRecursivo(Nodo nodo, StringBuilder texto) {
         if (nodo == null || nodo.estatus == 'B') {
             return;
@@ -248,8 +248,7 @@ public class ArbolBinarioString {
         ObtenerTextoInOrderRecursivo(nodo.lchild, texto);
         texto.append(nodo.texto).append("\n"); // Agrega el texto del nodo al StringBuilder
         ObtenerTextoInOrderRecursivo(nodo.rchild, texto);
-    }//end ObtenerText(este lo agrega) 
-    
+    }// end ObtenerText(este lo agrega)
 
     public void ConvertirMayusculas(Nodo nodo) {
         if (nodo != null) {
@@ -258,50 +257,60 @@ public class ArbolBinarioString {
             ConvertirMayusculas(nodo.rchild);
         }
     }// end convertir Mayuculas
-    
+
     public void ConvertirMinusculas(Nodo nodo) {
         if (nodo != null) {
             nodo.texto = nodo.texto.toLowerCase();
             ConvertirMinusculas(nodo.lchild);
             ConvertirMinusculas(nodo.rchild);
         }
-    }//end Convertir minusculas
-    
-    public void Desencriptar(Nodo nodo, String clave){
+    }// end Convertir minusculas
+
+    public void Desencriptar(Nodo nodo, String clave) {
         if (nodo != null) {
             nodo.texto = EncriptacionJulioVerne.Desencriptar(nodo.texto, clave);
             Desencriptar(nodo.lchild, clave);
             Desencriptar(nodo.rchild, clave);
         }
-    }//end desencriptar nodo
+    }// end desencriptar nodo
 
-    public void Encriptar(Nodo nodo, String clave){
+    public void Encriptar(Nodo nodo, String clave) {
         if (nodo != null) {
             nodo.texto = EncriptacionJulioVerne.Encriptar(nodo.texto, clave);
             Encriptar(nodo.lchild, clave);
             Encriptar(nodo.rchild, clave);
         }
-    }//end encriptar nodo
+    }// end encriptar nodo
 
     public String PalaraOculta(Nodo nodo) {
         StringBuilder segundaPalabra = new StringBuilder();
-    
+
         if (nodo != null) {
             // Separar el texto en palabras
             String[] palabras = nodo.texto.split("\\s+");
-    
+
             // Verificar si hay al menos dos palabras en el texto
             if (palabras.length >= 2) {
                 segundaPalabra.append(palabras[1]).append(" ");
             }
-    
+
             // Llamar recursivamente a los hijos
             segundaPalabra.append(PalaraOculta(nodo.lchild));
             segundaPalabra.append(PalaraOculta(nodo.rchild));
         }
-    
+
         return segundaPalabra.toString();
     }// end Palabra oculta
+
+    public String JuntarTexto(Nodo nodo) {
+        StringBuilder TextoJunto = new StringBuilder();
+
+        TextoJunto.append(nodo.texto);
+        TextoJunto.append(JuntarTexto(nodo.lchild));
+        TextoJunto.append(JuntarTexto(nodo.rchild));
+        return TextoJunto.toString();
+    }// end juntar texto
+
     public static void main(String[] args) {
         ArbolBinarioString Arbol = new ArbolBinarioString();
         int opcion;

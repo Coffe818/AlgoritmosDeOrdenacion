@@ -2,6 +2,8 @@ package Tarea9;
 
 import javax.swing.JOptionPane;
 
+import Tarea1.EncriptacionJulioVerne;
+
 //import javax.swing.JOptionPane;
 
 /*todo esto me basare en el programa ya echo de Estructura llamado arbol binario,
@@ -232,6 +234,74 @@ public class ArbolBinarioString {
     BajaFisica(nump);
     AgregarNodo(nump, texto);
     }//end modificar
+
+    public String ObtenerTextoInOrder(Nodo nodo) {
+        StringBuilder textoCompleto = new StringBuilder();
+        ObtenerTextoInOrderRecursivo(nodo, textoCompleto);
+        return textoCompleto.toString();
+    }//end obtener texto (este lo imprime)
+    
+    private void ObtenerTextoInOrderRecursivo(Nodo nodo, StringBuilder texto) {
+        if (nodo == null || nodo.estatus == 'B') {
+            return;
+        }
+        ObtenerTextoInOrderRecursivo(nodo.lchild, texto);
+        texto.append(nodo.texto).append("\n"); // Agrega el texto del nodo al StringBuilder
+        ObtenerTextoInOrderRecursivo(nodo.rchild, texto);
+    }//end ObtenerText(este lo agrega) 
+    
+
+    public void ConvertirMayusculas(Nodo nodo) {
+        if (nodo != null) {
+            nodo.texto = nodo.texto.toUpperCase();
+            ConvertirMayusculas(nodo.lchild);
+            ConvertirMayusculas(nodo.rchild);
+        }
+    }// end convertir Mayuculas
+    
+    public void ConvertirMinusculas(Nodo nodo) {
+        if (nodo != null) {
+            nodo.texto = nodo.texto.toLowerCase();
+            ConvertirMinusculas(nodo.lchild);
+            ConvertirMinusculas(nodo.rchild);
+        }
+    }//end Convertir minusculas
+    
+    public void Desencriptar(Nodo nodo, String clave){
+        if (nodo != null) {
+            nodo.texto = EncriptacionJulioVerne.Desencriptar(nodo.texto, clave);
+            Desencriptar(nodo.lchild, clave);
+            Desencriptar(nodo.rchild, clave);
+        }
+    }//end desencriptar nodo
+
+    public void Encriptar(Nodo nodo, String clave){
+        if (nodo != null) {
+            nodo.texto = EncriptacionJulioVerne.Encriptar(nodo.texto, clave);
+            Encriptar(nodo.lchild, clave);
+            Encriptar(nodo.rchild, clave);
+        }
+    }//end encriptar nodo
+
+    public String PalaraOculta(Nodo nodo) {
+        StringBuilder segundaPalabra = new StringBuilder();
+    
+        if (nodo != null) {
+            // Separar el texto en palabras
+            String[] palabras = nodo.texto.split("\\s+");
+    
+            // Verificar si hay al menos dos palabras en el texto
+            if (palabras.length >= 2) {
+                segundaPalabra.append(palabras[1]).append(" ");
+            }
+    
+            // Llamar recursivamente a los hijos
+            segundaPalabra.append(PalaraOculta(nodo.lchild));
+            segundaPalabra.append(PalaraOculta(nodo.rchild));
+        }
+    
+        return segundaPalabra.toString();
+    }// end Palabra oculta
     public static void main(String[] args) {
         ArbolBinarioString Arbol = new ArbolBinarioString();
         int opcion;

@@ -4,13 +4,18 @@ import javax.swing.JOptionPane;
 import Tarea1.*;
 
 public class Principal {
-     public static void main(String[] args) {
+    static String textototal = "";
+
+    
+
+    public static void main(String[] args) {
         ArbolBinarioString arbol = new ArbolBinarioString();
-        
+
         int opcion;
         String clave;
+        clave = JOptionPane.showInputDialog("Ingrese la clave:");
         do {
-            clave = JOptionPane.showInputDialog("Ingrese la clave:");
+
             opcion = Integer.parseInt(JOptionPane.showInputDialog(null, "====== MENU PRINCIPAL ======\n"
                     + "1. Alta de elemento\n"
                     + "2. Contar caracteres y palabras\n"
@@ -26,7 +31,8 @@ public class Principal {
                     + "12. Convertir a minúsculas\n"
                     + "13. Mostrar párrafos encriptados\n"
                     + "14. Desencriptar párrafos\n"
-                    + "15. Encontrar frase escondida\n"
+                    + "15. Encriptar"
+                    + "16. Encontrar frase escondida\n"
                     + "0. Salir\n"
                     + "Ingrese opción: \n"));
 
@@ -34,14 +40,20 @@ public class Principal {
                 case 1:
                     int nump = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese numero de parrafo: "));
                     String texto = JOptionPane.showInputDialog(null, "Ingrese texto: ");
-                    String textoEncriptado = EncriptacionJulioVerne.Encriptar(texto,clave);
+                    textototal += texto;
+                    String textoEncriptado = EncriptacionJulioVerne.Encriptar(texto, clave);
                     arbol.AgregarNodo(nump, textoEncriptado);
                     break;
                 case 2:
-                    
+                    JOptionPane.showMessageDialog(null,
+                            CaracteresString.NumLetras(textototal) + "\n" + CaracteresString.NumPalabras(textototal));
                     break;
                 case 3:
-                    // Agregar código para cambiar texto de un párrafo
+                    int numpModificar = Integer
+                            .parseInt(JOptionPane.showInputDialog(null, "Ingrese numero de parrafo a modificar: "));
+                    String nuevoTexto = JOptionPane.showInputDialog(null, "Ingrese el nuevo texto: ");
+                    textoEncriptado = EncriptacionJulioVerne.Encriptar(nuevoTexto, clave);
+                    arbol.Modificar(numpModificar, textoEncriptado);
                     break;
                 case 4:
                     arbol.ImprimirInOrder();
@@ -61,34 +73,38 @@ public class Principal {
                     JOptionPane.showMessageDialog(null, "Profundidad del árbol: " + profundidad);
                     break;
                 case 9:
-                    int numpEliminar = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese numero de parrafo a eliminar: "));
+                    int numpEliminar = Integer
+                            .parseInt(JOptionPane.showInputDialog(null, "Ingrese numero de parrafo a eliminar: "));
                     arbol.BajaFisica(numpEliminar);
                     break;
                 case 10:
-                  //  String textoBuscar = JOptionPane.showInputDialog(null, "Ingrese texto a buscar: ");
-                    // Agregar código para buscar texto en los párrafos
+                    String text = JOptionPane.showInputDialog(null, "Ingrese texto a buscar: ");
+                    arbol.ImprimirBuscarPorTextoInOrder(text);
                     break;
                 case 11:
-                    // Agregar código para convertir a mayúsculas
+                    arbol.ConvertirMayusculas(ArbolBinarioString.raiz);
                     break;
                 case 12:
-                    // Agregar código para convertir a minúsculas
+                    arbol.ConvertirMinusculas(ArbolBinarioString.raiz);
                     break;
                 case 13:
-                    // Agregar código para mostrar párrafos encriptados
+                    arbol.ImprimirPreOrder();
                     break;
                 case 14:
-                    // Agregar código para desencriptar párrafos
+                    arbol.Desencriptar(ArbolBinarioString.raiz, clave);
                     break;
                 case 15:
-                    // Agregar código para encontrar frase escondida
+                    arbol.Encriptar(ArbolBinarioString.raiz, clave);
+                    break;
+                case 16:
+                   JOptionPane.showMessageDialog(null, "La palabra coulta del arbol es: "+ arbol.PalaraOculta(ArbolBinarioString.raiz));
                     break;
                 case 0:
                     break;
                 default:
                     JOptionPane.showMessageDialog(null, "Opción inválida");
                     break;
-            }
+            }//end switch
         } while (opcion != 0);
-    }
-}
+    }//end main
+}//end class

@@ -24,7 +24,7 @@ public class ReproducirAudio {
         String[] unidades = { "cero", "uno", "dos", "tres", "cuatro", "cinco", "seis", "siete", "ocho", "nueve" };
         String[] decenas = { "", "", "veinte", "treinta", "cuarenta", "cincuenta", "sesenta", "setenta", "ochenta",
                 "noventa" };
-        String[] especiales = { "diez", "once", "doce", "trece", "catorce", "quince", "dieciséis", "diecisiete",
+        String[] especiales = { "diez", "once", "doce", "trece", "catorce", "quince", "dieciseis", "diecisiete",
                 "dieciocho", "diecinueve" };
 
         String[] grupos = { "", "mil", "millones" };
@@ -95,6 +95,15 @@ public class ReproducirAudio {
         return palabras;
     }// end ConvertirNumeroEnPalabras
 
+    public static void PalabraPorPalabra(String stx){
+        String[] palabras = stx.trim().split("\\s+");
+        
+        for (int i = 0; i < palabras.length; i++) {
+            TextToSpeech.Reproucir(palabras[i]);
+        }//end for
+
+    }//end palabra por palabra
+
     public static void main(String[] args) {
         String texto = JOptionPane.showInputDialog("Ingrese un número o un texto:");
         int opcion;
@@ -102,9 +111,8 @@ public class ReproducirAudio {
         do {
             if (esNumero(texto)) {
                 double numero = Double.parseDouble(texto);
-                numeroEnPalabras = ConvertirNumeroEnPalabras(numero);
                 opcion = Integer.parseInt(JOptionPane.showInputDialog(null, "=======MENU AUDIO =======" +
-                        "\nNumero: " + numero + "\nTexto: " + numeroEnPalabras
+                        "\nNumero: " + numero 
                         + "\n1. Cambiar el texto \n2. Reproducir audio"));
             } else {
                 opcion = Integer.parseInt(JOptionPane.showInputDialog(null, "=======MENU AUDIO =======" +
@@ -119,9 +127,9 @@ public class ReproducirAudio {
                     if (esNumero(texto)) {
                         double numero = Double.parseDouble(texto);
                         numeroEnPalabras = ConvertirNumeroEnPalabras(numero);
-                        TextToSpeech.generarSonidoDesdeTexto(numeroEnPalabras);
+                        ReproducirAudio.PalabraPorPalabra(numeroEnPalabras);
                     } else {
-                        TextToSpeech.generarSonidoDesdeTexto(texto);
+                         ReproducirAudio.PalabraPorPalabra(texto);
                     }
                     break;
                 default:

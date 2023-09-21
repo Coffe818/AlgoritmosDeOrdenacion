@@ -1,4 +1,4 @@
-package Tarea9;
+package Tarea10;
 
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;

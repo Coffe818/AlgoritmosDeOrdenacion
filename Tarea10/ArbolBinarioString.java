@@ -1,4 +1,4 @@
-package Tarea9;
+package Tarea10;
 
 import javax.swing.JOptionPane;
 
@@ -303,8 +303,12 @@ public class ArbolBinarioString {
     }// end Palabra oculta
 
     public String JuntarTexto(Nodo nodo) {
+        if (nodo == null || nodo.estatus == 'B') {
+            return ""; // Si el nodo es nulo o está dado de baja, retornar una cadena vacía
+        }
+    
         StringBuilder TextoJunto = new StringBuilder();
-
+    
         TextoJunto.append(nodo.texto);
         TextoJunto.append(JuntarTexto(nodo.lchild));
         TextoJunto.append(JuntarTexto(nodo.rchild));

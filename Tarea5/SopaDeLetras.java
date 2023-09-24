@@ -1,15 +1,21 @@
 package Tarea5;
 
 import Tarea1.*;
+import Tarea10.FormatoTabla;
+
 import java.util.Random;
-import javax.swing.JOptionPane;
+
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import java.awt.*;
 
 public class SopaDeLetras {
     static String[][] ARRAY = new String[20][20];
-    static String[]palabrasArray = new String[5];
+    static String[] palabrasArray = new String[5];
     static int filaAleatoria;
     static int columnaAleatoria;
     static Random random = new Random();
+    static FormatoTabla ft = new FormatoTabla();
 
     public static void AgregarHorizontal(String palabra, int filas, int columnas) {
         palabra = palabra.toUpperCase();
@@ -117,30 +123,55 @@ public class SopaDeLetras {
             // "Error de NO cabe en el array en DIAGONAL por la posicion que se le dio en
             // palabra" + palabra);
         } // end if
-    }
+    }// end agregar en diagonal
 
-    public static void ImprimirArray() {
-        StringBuilder mensaje = new StringBuilder();
+    public static JPanel ImprimirTabla(String[] palabrasArray) {
+        String[] columnNames = new String[21]; // Añadimos una columna extra para los números de fila
+        columnNames[0] = ""; // Dejamos la primera columna vacía para los números de fila
+        for (int i = 0; i < 20; i++) {
+            columnNames[i + 1] = String.valueOf(i + 1);
+        } // end for para llenar las columnas
+
+        DefaultTableModel model = new DefaultTableModel(columnNames, 20);
+
+        JTable table = new JTable(model);
+
         for (int i = 0; i < ARRAY.length; i++) {
             for (int j = 0; j < ARRAY[i].length; j++) {
                 if (ARRAY[i][j] == null) {
-                    char randomLetter = (char) (random.nextInt(26) + 'A'); // Genera una letra aleatoria en mayúsculas
-                    mensaje.append(randomLetter).append(" ");
+                    char randomLetter = (char) (random.nextInt(26) + 'A');
+                    model.setValueAt(randomLetter, i, j + 1); // Añadimos 1 para dejar espacio para los números de fila
                 } else {
-                    mensaje.append(ARRAY[i][j]).append(" ");
-                }
+                    model.setValueAt(ARRAY[i][j], i, j + 1);
+                } // end if para agregar los datos a la sopa de letras
+            } // end for para recorrer horizontalmente
+
+            model.setValueAt(i + 1, i, 0); // Números de fila
+        } // end for para recorrer verticalmente
+
+        StringBuilder mensaje = new StringBuilder();
+        mensaje.append("Palabras ingresadas:\n");
+        for (String palabra : palabrasArray) {
+            if (palabra != null) {
+                mensaje.append(" " + palabra + " , ");
             }
-            mensaje.append("\n"); // Agrega una nueva línea después de imprimir una fila
-        } // end for
-        JOptionPane.showMessageDialog(null, mensaje.toString(), "Tablero de Letras", JOptionPane.PLAIN_MESSAGE);
-    }// end imprimir array
+        } // end for para recorrer y agregar palabras
+
+        JPanel panel = new JPanel(new BorderLayout());
+        panel.add(new JScrollPane(table), BorderLayout.CENTER);
+        panel.add(new JLabel(mensaje.toString()), BorderLayout.SOUTH);
+
+        // JOptionPane.showMessageDialog(null, panel, "Sopa de Letras",
+        // JOptionPane.INFORMATION_MESSAGE);
+        return panel;
+
+    }// end Imprimir tabla
 
     public static void main(String[] args) {
-       
 
         for (int i = 0; i < 2; i++) {
-             String palabra = JOptionPane.showInputDialog("Ingresa una palabra:");
-            palabrasArray[i]=palabra;
+            String palabra = JOptionPane.showInputDialog("Ingresa una palabra:");
+            palabrasArray[i] = palabra;
             filaAleatoria = random.nextInt(20);
             columnaAleatoria = random.nextInt(20);
             int opcionAleatoria = random.nextInt(3);
@@ -158,10 +189,21 @@ public class SopaDeLetras {
                 AgregarDiagonal(palabra, filaAleatoria, columnaAleatoria);
             } // end if que tambien puede ser con switch
         } // end por que pide las palabras
-        
+        int opcion;
+        do {
+            opcion = Integer.parseInt(
+                    JOptionPane.showInputDialog(null, "=======Sopa de letras========\n1.buscar palabra\n0.salir"));
+            switch (opcion) {
+                case 1:
+                    JOptionPane.showInputDialog(null, ImprimirTabla(palabrasArray));
 
-        ImprimirArray();
-       
-        
+                    break;
+
+                default:
+                    break;
+            }
+
+        } while (opcion != 0);
+
     }// end main
 }// end class

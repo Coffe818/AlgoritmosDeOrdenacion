@@ -1,10 +1,12 @@
 package Tarea5;
+
 import Tarea1.*;
 import java.util.Random;
-import java.util.Scanner;
+import javax.swing.JOptionPane;
 
 public class SopaDeLetras {
     static String[][] ARRAY = new String[20][20];
+    static String[]palabrasArray = new String[5];
     static int filaAleatoria;
     static int columnaAleatoria;
     static Random random = new Random();
@@ -27,7 +29,7 @@ public class SopaDeLetras {
                     ARRAY[filas][columnas + i] = "" + palabra.charAt(i);
                 } // end for para agregar la palabra
             } else {
-                
+
                 filaAleatoria = random.nextInt(20);
                 columnaAleatoria = random.nextInt(20);
                 AgregarHorizontal(palabra, filaAleatoria, columnaAleatoria);
@@ -35,7 +37,7 @@ public class SopaDeLetras {
                 // " + palabra);
             } // end if
         } else {
-            
+
             filaAleatoria = random.nextInt(20);
             columnaAleatoria = random.nextInt(20);
             AgregarHorizontal(palabra, filaAleatoria, columnaAleatoria);
@@ -43,7 +45,7 @@ public class SopaDeLetras {
             // "Error de NO cabe en el array en HORIZONTAL por la posicion que se le dio en
             // palabra" + palabra);
         } // end if
-    }//end agregar horizontal
+    }// end agregar horizontal
 
     public static void AgregarVertical(String palabra, int filas, int columnas) {
         palabra = palabra.toUpperCase();
@@ -63,7 +65,7 @@ public class SopaDeLetras {
                     ARRAY[filas + i][columnas] = "" + palabra.charAt(i);
                 } // sirve para ver si la el espacio esta ocupado
             } else {
-                
+
                 filaAleatoria = random.nextInt(20);
                 columnaAleatoria = random.nextInt(20);
                 AgregarVertical(palabra, filaAleatoria, columnaAleatoria);
@@ -71,7 +73,7 @@ public class SopaDeLetras {
                 // + palabra);
             } // end if
         } else {
-            
+
             filaAleatoria = random.nextInt(20);
             columnaAleatoria = random.nextInt(20);
             AgregarVertical(palabra, filaAleatoria, columnaAleatoria);
@@ -99,7 +101,7 @@ public class SopaDeLetras {
                     ARRAY[filas + i][columnas + i] = "" + palabra.charAt(i);
                 } // sirve para ver si la el espacio esta ocupado
             } else {
-                
+
                 filaAleatoria = random.nextInt(20);
                 columnaAleatoria = random.nextInt(20);
                 AgregarDiagonal(palabra, filaAleatoria, columnaAleatoria);
@@ -107,7 +109,7 @@ public class SopaDeLetras {
                 // + palabra);
             } // end if
         } else {
-            
+
             filaAleatoria = random.nextInt(20);
             columnaAleatoria = random.nextInt(20);
             AgregarDiagonal(palabra, filaAleatoria, columnaAleatoria);
@@ -118,34 +120,35 @@ public class SopaDeLetras {
     }
 
     public static void ImprimirArray() {
+        StringBuilder mensaje = new StringBuilder();
         for (int i = 0; i < ARRAY.length; i++) {
             for (int j = 0; j < ARRAY[i].length; j++) {
                 if (ARRAY[i][j] == null) {
                     char randomLetter = (char) (random.nextInt(26) + 'A'); // Genera una letra aleatoria en mayúsculas
-                    System.out.print(randomLetter + " ");
+                    mensaje.append(randomLetter).append(" ");
                 } else {
-                    System.out.print(ARRAY[i][j] + " ");
+                    mensaje.append(ARRAY[i][j]).append(" ");
                 }
             }
-            System.out.println(); // Agrega una nueva línea después de imprimir una fila
+            mensaje.append("\n"); // Agrega una nueva línea después de imprimir una fila
         } // end for
+        JOptionPane.showMessageDialog(null, mensaje.toString(), "Tablero de Letras", JOptionPane.PLAIN_MESSAGE);
     }// end imprimir array
 
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+       
 
-        for (int i = 0; i < 5; i++) {
-            System.out.print("Ingresa una palabra: ");
-            String palabra = scanner.nextLine();
-            
+        for (int i = 0; i < 2; i++) {
+             String palabra = JOptionPane.showInputDialog("Ingresa una palabra:");
+            palabrasArray[i]=palabra;
             filaAleatoria = random.nextInt(20);
             columnaAleatoria = random.nextInt(20);
             int opcionAleatoria = random.nextInt(3);
-            int opcionAleatoria2 = random.nextInt(3)+1;
+            int opcionAleatoria2 = random.nextInt(3) + 1;
 
-            if (opcionAleatoria2 % 2 == 0) {//1 de 3 para invertir la palabra
-                palabra=CaracteresString.InvertirCaracteres(palabra);
-            } 
+            if (opcionAleatoria2 % 2 == 0) {// 1 de 3 para invertir la palabra
+                palabra = CaracteresString.InvertirCaracteres(palabra);
+            }
 
             if (opcionAleatoria == 0) {
                 AgregarHorizontal(palabra, filaAleatoria, columnaAleatoria);
@@ -153,9 +156,12 @@ public class SopaDeLetras {
                 AgregarVertical(palabra, filaAleatoria, columnaAleatoria);
             } else {
                 AgregarDiagonal(palabra, filaAleatoria, columnaAleatoria);
-            }//end if que tambien puede ser con switch 
-        }//end por que pide las palabras
-        scanner.close();
+            } // end if que tambien puede ser con switch
+        } // end por que pide las palabras
+        
+
         ImprimirArray();
+       
+        
     }// end main
 }// end class

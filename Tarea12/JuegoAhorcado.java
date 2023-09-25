@@ -79,7 +79,7 @@ public class JuegoAhorcado {
         }// while hasta que se termiene el juego
 
         if (juego.PalabraAdivinada()) {
-            JOptionPane.showMessageDialog(null, "Ganaste: absolutamentoe nada");
+            JOptionPane.showMessageDialog(null, "Ganaste: absolutamente nada");
         } else {
             JOptionPane.showMessageDialog(null, "Perdiste lero lero. La palabra era: " + palabraSecreta);
         } // end if para ganar o perder

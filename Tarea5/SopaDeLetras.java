@@ -11,7 +11,8 @@ import java.awt.*;
 
 public class SopaDeLetras {
     static String[][] ARRAY = new String[20][20];
-    static String[] palabrasArray = new String[5];
+    static int CantidadPalabras =5;
+    static String[] palabrasArray = new String[CantidadPalabras];
     static int filaAleatoria;
     static int columnaAleatoria;
     static Random random = new Random();
@@ -139,8 +140,8 @@ public class SopaDeLetras {
         for (int i = 0; i < ARRAY.length; i++) {
             for (int j = 0; j < ARRAY[i].length; j++) {
                 if (ARRAY[i][j] == null) {
-                    char randomLetter = (char) (random.nextInt(26) + 'A');
-                    model.setValueAt(randomLetter, i, j + 1); // Añadimos 1 para dejar espacio para los números de fila
+                   // char randomLetter = (char) (random.nextInt(26) + 'A');
+                    model.setValueAt(".", i, j + 1); // Añadimos 1 para dejar espacio para los números de fila
                 } else {
                     model.setValueAt(ARRAY[i][j], i, j + 1);
                 } // end if para agregar los datos a la sopa de letras
@@ -159,17 +160,74 @@ public class SopaDeLetras {
 
         JPanel panel = new JPanel(new BorderLayout());
         panel.add(new JScrollPane(table), BorderLayout.CENTER);
-        panel.add(new JLabel(mensaje.toString()), BorderLayout.SOUTH);
+        panel.add(new JLabel(mensaje.toString()), BorderLayout.EAST);
 
-        // JOptionPane.showMessageDialog(null, panel, "Sopa de Letras",
-        // JOptionPane.INFORMATION_MESSAGE);
+  
         return panel;
 
     }// end Imprimir tabla
 
+    //metodos para buscar la palavra y verificar
+    public static String BuscarPalabra(String palabra, int filaInicio, int columnaInicio, int filaFin, int columnaFin) {
+        palabra = palabra.toUpperCase();
+
+        String palabraHorizontal = obtenerPalabraHorizontal(filaInicio, columnaInicio, columnaFin);
+        String palabraVertical = obtenerPalabraVertical(filaInicio, columnaInicio, filaFin);
+        String palabraDiagonal = obtenerPalabraDiagonal(filaInicio, columnaInicio, filaFin, columnaFin);
+        //las guarda en cada uno de los casos para ver si coincide
+        //y estos son por si la palabra estan alrevez
+        String palabraHorizontalInvertida = CaracteresString.InvertirCaracteres(palabraHorizontal);
+        String palabraVerticalInvertida = CaracteresString.InvertirCaracteres(palabraVertical);
+        String palabraDiagonalInvertida = CaracteresString.InvertirCaracteres(palabraDiagonal);
+
+        if (palabra.equals(palabraHorizontal) || palabra.equals(palabraHorizontalInvertida)) {
+            return "La palabra "+palabra+" esta en dirección horizontal.";
+        } else if (palabra.equals(palabraVertical) || palabra.equals(palabraVerticalInvertida)) {
+            return "La palabra "+palabra+" esta en dirección vertical.";
+        } else if (palabra.equals(palabraDiagonal) || palabra.equals(palabraDiagonalInvertida)) {
+            return "La palabra"+palabra+" esta en dirección diagonal.";
+        } else {
+            return "La palabra no fue encontrada en ninguna direccion.";
+        }//en la que coinida regresa el return
+    }//end Buscar palabra
+
+    private static String obtenerPalabraHorizontal(int fila, int columnaInicio, int columnaFin) {
+        StringBuilder palabraHorizontal = new StringBuilder();
+        for (int j = columnaInicio; j <= columnaFin; j++) {
+            if (ARRAY[fila][j] != null) {
+                palabraHorizontal.append(ARRAY[fila][j]);
+            }// end fi que va agregarndo las letras el StringBuilder
+        }//end for para recorrer horizontalmente
+        return palabraHorizontal.toString();
+    }// end obener palabra horizontal
+
+    private static String obtenerPalabraVertical(int filaInicio, int columna, int filaFin) {
+        StringBuilder palabraVertical = new StringBuilder();
+        for (int i = filaInicio; i <= filaFin; i++) {
+            if (ARRAY[i][columna] != null) {
+                palabraVertical.append(ARRAY[i][columna]);
+            }//end if para agregar las letras
+        }// end for para recorrer vertical
+        return palabraVertical.toString();
+    }//end obtener palabara vertical
+
+    private static String obtenerPalabraDiagonal(int filaInicio, int columnaInicio, int filaFin, int columnaFin) {
+        StringBuilder palabraDiagonal = new StringBuilder();
+        int i = filaInicio;
+        int j = columnaInicio;
+        while (i <= filaFin && j <= columnaFin) {
+            if (ARRAY[i][j] != null) {
+                palabraDiagonal.append(ARRAY[i][j]);
+            }// end if para agregar las letras
+            i++;
+            j++;
+        }// end while para recorrer en diagonal
+        return palabraDiagonal.toString();
+    }//end obtener palara en diagonal
+
     public static void main(String[] args) {
 
-        for (int i = 0; i < 2; i++) {
+        for (int i = 0; i < CantidadPalabras; i++) {
             String palabra = JOptionPane.showInputDialog("Ingresa una palabra:");
             palabrasArray[i] = palabra;
             filaAleatoria = random.nextInt(20);
@@ -195,7 +253,23 @@ public class SopaDeLetras {
                     JOptionPane.showInputDialog(null, "=======Sopa de letras========\n1.buscar palabra\n0.salir"));
             switch (opcion) {
                 case 1:
-                    JOptionPane.showInputDialog(null, ImprimirTabla(palabrasArray));
+                JOptionPane.showMessageDialog(null,ImprimirTabla(palabrasArray));
+
+                String palabraBuscar = JOptionPane.showInputDialog(null, "Ingresa la palabra a buscar:");
+                int filaInicio = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingresa la fila inicial:")) - 1;
+                int columnaInicio = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingresa la columna inicial:")) - 1;
+                int filaFin = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingresa la fila final:")) - 1;
+                int columnaFin = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingresa la columna final:")) - 1;
+
+                /*String palabraBuscar = JOptionPane.showInputDialog(null, ImprimirTabla(palabrasArray) + "Ingresa la palabra a buscar:");
+                int filaInicio = Integer.parseInt(JOptionPane.showInputDialog(null, ImprimirTabla(palabrasArray) + "Ingresa la fila inicial:")) - 1;
+                int columnaInicio = Integer.parseInt(JOptionPane.showInputDialog(null, ImprimirTabla(palabrasArray) + "Ingresa la columna inicial:")) - 1;
+                int filaFin = Integer.parseInt(JOptionPane.showInputDialog(null, ImprimirTabla(palabrasArray) + "Ingresa la fila final:")) - 1;
+                int columnaFin = Integer.parseInt(JOptionPane.showInputDialog(null, ImprimirTabla(palabrasArray) + "Ingresa la columna final:")) - 1;
+                */
+                String resultado = BuscarPalabra(palabraBuscar, filaInicio, columnaInicio, filaFin, columnaFin);
+                JOptionPane.showMessageDialog(null, resultado);
+                
 
                     break;
 

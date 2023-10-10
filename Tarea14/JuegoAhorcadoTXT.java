@@ -68,7 +68,7 @@ public class JuegoAhorcadoTXT {
             String filePath;
             switch (opcion) {
                 case 1:
-                    filePath = "Animales.txt"; // Cambia esto por la ruta de tu archivo
+                    filePath ="C:\\Users\\New\\OneDrive - Universidad Autonoma de Coahuila\\Workspace 818\\Java\\Escuela\\AlgoritmosDeOrdenacion\\Ahorado\\Animales.txt" ; // Cambia esto por la ruta de tu archivo
                     PalabraRandom = PalabraRandom(filePath).toLowerCase();
                     Juego(PalabraRandom);
 
@@ -79,7 +79,7 @@ public class JuegoAhorcadoTXT {
                     } // edn caso de que meta mal el archivo
                     break;
                 case 2:
-                    filePath = "Frutas.txt"; // Cambia esto por la ruta de tu archivo
+                    filePath = "C:\\Users\\New\\OneDrive - Universidad Autonoma de Coahuila\\Workspace 818\\Java\\Escuela\\AlgoritmosDeOrdenacion\\Ahorado\\Frutas.txt"; // Cambia esto por la ruta de tu archivo
                     PalabraRandom = PalabraRandom(filePath).toLowerCase();
                     Juego(PalabraRandom);
 
@@ -90,7 +90,7 @@ public class JuegoAhorcadoTXT {
                     } // edn caso de que meta mal el archivo
                     break;
                 case 3:
-                    filePath = "Verduras.txt"; // Cambia esto por la ruta de tu archivo
+                    filePath = "C:\\Users\\New\\OneDrive - Universidad Autonoma de Coahuila\\Workspace 818\\Java\\Escuela\\AlgoritmosDeOrdenacion\\Ahorado\\Verduras.txt"; // Cambia esto por la ruta de tu archivo
                     PalabraRandom = PalabraRandom(filePath).toLowerCase();
                     Juego(PalabraRandom);
 
@@ -101,7 +101,7 @@ public class JuegoAhorcadoTXT {
                     } // edn caso de que meta mal el archivo
                     break;
                 case 4:
-                    filePath = "NombrePersona.txt"; // Cambia esto por la ruta de tu archivo
+                    filePath = "C:\\Users\\New\\OneDrive - Universidad Autonoma de Coahuila\\Workspace 818\\Java\\Escuela\\AlgoritmosDeOrdenacion\\Ahorado\\NombrePersona.txt"; // Cambia esto por la ruta de tu archivo
                     PalabraRandom = PalabraRandom(filePath).toLowerCase();
                     Juego(PalabraRandom);
 

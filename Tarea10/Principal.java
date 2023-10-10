@@ -8,7 +8,7 @@ public class Principal {
     static String clave = JOptionPane.showInputDialog("Ingrese la clave:");
     static boolean encriptado = true;
     static ArbolBinarioString arbol = new ArbolBinarioString();
-    static String textoCompleto = "";
+    static String textoCompleto = null;
 
     public static void main(String[] args) {
 
@@ -50,7 +50,7 @@ public class Principal {
                 + "Ingrese opción: \n";
 
         do {
-            textoCompleto = "";
+            textoCompleto = null;
             if (encriptado) {
                 opcion = Integer.parseInt(JOptionPane.showInputDialog(null, menu1));
                 switchEncriptado(opcion);
@@ -74,6 +74,7 @@ public class Principal {
                 textoCompleto = arbol.JuntarTexto(ArbolBinarioString.raiz);
                 JOptionPane.showMessageDialog(null,
                         CaracteresString.NumLetras(textoCompleto) + "\n" + CaracteresString.NumPalabras(textoCompleto));
+                textoCompleto = null;
                 break;
             case 3:
                 int numpModificar = Integer
@@ -126,6 +127,7 @@ public class Principal {
                 textoCompleto = arbol.JuntarTexto(ArbolBinarioString.raiz);
                 JOptionPane.showMessageDialog(null,
                         CaracteresString.NumLetras(textoCompleto) + "\n" + CaracteresString.NumPalabras(textoCompleto));
+                textoCompleto = null;
                 break;
             case 3:
                 arbol.ImprimirInOrder();

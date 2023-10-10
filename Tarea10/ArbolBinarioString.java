@@ -309,7 +309,7 @@ public class ArbolBinarioString {
     
         StringBuilder TextoJunto = new StringBuilder();
     
-        TextoJunto.append(nodo.texto);
+        TextoJunto.append(nodo.texto+" ");
         TextoJunto.append(JuntarTexto(nodo.lchild));
         TextoJunto.append(JuntarTexto(nodo.rchild));
         return TextoJunto.toString();

@@ -18,6 +18,12 @@ public class CaracteresString {
      // porque no los se poner
 
     public static String NumLetras(String s) {
+        vocales = 0;
+        consonantes = 0;
+        digito = 0;
+        espacios = 0;
+        especial = 0;
+        totalLetras = 0;
 
         for (char c : s.toCharArray()) {
             if (Character.isLetter(c)) {// primero ques ea letra
@@ -93,7 +99,6 @@ public class CaracteresString {
 
         s = JOptionPane.showInputDialog(null, "Ingrese el String: ");
         String clave = JOptionPane.showInputDialog(null, "Ingrese clave: ");
-        
 
         int opcion;
         do {

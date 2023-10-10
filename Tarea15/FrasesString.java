@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
 
 import Tarea1.CaracteresString;
 import Tarea10.ArbolBinarioString;
+import Tarea6.TextToSpeech;
 
 public class FrasesString {
    static ArrayList<String> words = new ArrayList<>();
@@ -54,12 +55,12 @@ public class FrasesString {
       int opcion;
 
       do {
-         opcion = Integer.parseInt(JOptionPane.showInputDialog(null, "===== FREASES STRIN =====" +
+         opcion = Integer.parseInt(JOptionPane.showInputDialog(null, "===== FRASES STRIN =====" +
                "\n1. Datos de frase random \n2. Recorridos \n3. Sonido\n0. Salir"));
-
+         String PalabraRandom = PalabraRandom();
          switch (opcion) {
             case 1:
-               String PalabraRandom = PalabraRandom();
+
                JOptionPane.showMessageDialog(null, PalabraRandom + "\n" +
                      CaracteresString.NumLetras(PalabraRandom) + "\n" + CaracteresString.NumPalabras(PalabraRandom));
                // System.out.println(words.toString());
@@ -82,10 +83,14 @@ public class FrasesString {
 
                   default:
                      break;
-               }//end swithc para los recorriods
+               }// end swithc para los recorriods
 
                break;
             case 3:
+            AgregarDatos();
+            int opcion3 = Integer.parseInt(JOptionPane.showInputDialog(null, "Seleccione el numero de la frase"));
+            String frase = words.get(opcion3);
+            TextToSpeech.Reproucir(frase);
 
                break;
 

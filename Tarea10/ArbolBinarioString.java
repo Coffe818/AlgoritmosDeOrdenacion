@@ -29,7 +29,7 @@ public class ArbolBinarioString {
         }//
     }// end clas nodo
 
-    static Nodo raiz;
+    public static Nodo raiz;
     Nodo NuevoNodo;
 
     public void AgregarNodo(int np, String texto) {

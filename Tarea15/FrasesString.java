@@ -7,7 +7,7 @@ import java.util.*;
 
 import javax.swing.JOptionPane;
 
-import Tarea1.CaracteresString;
+import Tarea1.*;
 import Tarea10.ArbolBinarioString;
 import Tarea6.TextToSpeech;
 
@@ -53,16 +53,26 @@ public class FrasesString {
 
    public static void main(String[] args) {
       int opcion;
-
+      String clave = "asd";
       do {
          opcion = Integer.parseInt(JOptionPane.showInputDialog(null, "===== FRASES STRIN =====" +
                "\n1. Datos de frase random \n2. Recorridos \n3. Sonido\n0. Salir"));
          String PalabraRandom = PalabraRandom();
          switch (opcion) {
             case 1:
-
+               String encriptado = CaracteresString.Encriptar(PalabraRandom, 6);
+               String mensajeEncriptado = EncriptacionJulioVerne.Encriptar(PalabraRandom, clave);
+               String mensajeDesencriptado = EncriptacionJulioVerne.Desencriptar(mensajeEncriptado, clave);
                JOptionPane.showMessageDialog(null, PalabraRandom + "\n" +
-                     CaracteresString.NumLetras(PalabraRandom) + "\n" + CaracteresString.NumPalabras(PalabraRandom));
+                     CaracteresString.NumLetras(PalabraRandom) + "\n" + CaracteresString.NumPalabras(PalabraRandom) +
+                     "\nConverit Mayus: " + PalabraRandom.toUpperCase() + "\nConvertir Minus: "
+                     + PalabraRandom.toLowerCase() + "\n"
+                     + CaracteresString.PalabrasVocal(PalabraRandom)
+                     + "\nPalabra invertida: " + CaracteresString.InvertirCaracteres(PalabraRandom)
+                     + "\nMensaje ecnriptado: " + encriptado
+                     + "\nMensaje desncriptado: " + CaracteresString.Desencriptar(encriptado, 6) + "\nEncriptado Julio Verne: "
+                     + mensajeEncriptado
+                     + "\nDesencriptado Julio Verne: " + mensajeDesencriptado);
                // System.out.println(words.toString());
                break;
             case 2:
@@ -87,10 +97,10 @@ public class FrasesString {
 
                break;
             case 3:
-            AgregarDatos();
-            int opcion3 = Integer.parseInt(JOptionPane.showInputDialog(null, "Seleccione el numero de la frase"));
-            String frase = words.get(opcion3);
-            TextToSpeech.Reproucir(frase);
+               AgregarDatos();
+               int opcion3 = Integer.parseInt(JOptionPane.showInputDialog(null, "Seleccione el numero de la frase"));
+               String frase = words.get(opcion3);
+               TextToSpeech.Reproucir(frase);
 
                break;
 

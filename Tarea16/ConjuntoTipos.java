@@ -129,6 +129,8 @@ public class ConjuntoTipos {
         InterseccionParesPrimos();
         DiferenciaImparesPrimos();
         DiferenciaParesPrimos();
+        ComplementoImparesPrimos();
+        ComplementoParesPrimos();
     }// end reset
 
     public static void main(String[] args) {
@@ -153,45 +155,45 @@ public class ConjuntoTipos {
 
             switch (opcion) {
                 case 1:
-                    mConjuntos.ImprimirJOption(ConjuntoUniversal, "Conjunto universal");
+                    mConjuntos.ImprimirJOption(ConjuntoUniversal, "Conjunto Universal");
                     break;
                 case 2:
-
+                    mConjuntos.ImprimirJOption(NumerosPares, "Numeros Pares");
                     break;
                 case 3:
-
+                    mConjuntos.ImprimirJOption(NumerosImpares, "Numeros Impares");
                     break;
                 case 4:
-
+                    mConjuntos.ImprimirJOption(NumerosPrimos, "Numeros Primos");
                     break;
                 case 5:
-
+                    mConjuntos.ImprimirJOption(UnionImparesPrimos, "Union Impares Primos");
                     break;
                 case 6:
-
+                    mConjuntos.ImprimirJOption(UnionParesPrimos, "Union Pares Primos");
                     break;
                 case 7:
-
+                    mConjuntos.ImprimirJOption(InterseccionImparesPrimos, "Interseccion Impares Primos");
                     break;
                 case 8:
-
+                    mConjuntos.ImprimirJOption(InterseccionParesPrimos, "Interseccion Pares Primos");
                     break;
                 case 9:
-
+                    mConjuntos.ImprimirJOption(DiferenciaImparesPrimos, "Difrencia Impares Primos");
                     break;
                 case 10:
-
+                    mConjuntos.ImprimirJOption(DiferenciaParesPrimos, "Diferencia Pares Primos");
                     break;
                 case 11:
-
+                    mConjuntos.ImprimirJOption(ComplementoImparesPrimos, "Complemetno Impares Primos");
                     break;
                 case 12:
-
+                    mConjuntos.ImprimirJOption(ComplementoParesPrimos, "Complemento Pares Primos");
                     break;
 
                 default:
                     break;
-            }
+            }// end switch
 
         } while (opcion != 0);
 

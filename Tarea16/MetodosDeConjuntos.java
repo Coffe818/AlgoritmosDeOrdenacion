@@ -5,7 +5,6 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 import java.util.TreeSet;
 
-import javax.swing.JOptionPane;
 
 import Tarea10.FormatoTabla;
 

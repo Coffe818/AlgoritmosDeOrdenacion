@@ -5,6 +5,10 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 import java.util.TreeSet;
 
+import javax.swing.JOptionPane;
+
+import Tarea10.FormatoTabla;
+
 public class MetodosDeConjuntos {
     static MetodosDeConjuntos conjuntos = new MetodosDeConjuntos();
     // =============COMO DECLARARLOS// CREARLOS =============
@@ -31,6 +35,15 @@ public class MetodosDeConjuntos {
         }
         System.out.println();
     }// end imprimir
+
+    public void ImprimirJOption(Set<Integer> conjunto, String nombre) {
+        FormatoTabla Ft = new FormatoTabla();
+        Ft.AgregarColumnas(Ft.Columnas(nombre));
+        for(int num : conjunto){
+            Ft.AgregarDatos(Ft.Datos(num));
+        }// end for para agregar datos
+        Ft.ImprimirTabla();
+    }// end Imprimir en Joption pane
 
     public void BuscarValor(Set<Integer> conjunto, int valor) {
         // conjunto.contains(valor); regrese un boolean por lo tanto

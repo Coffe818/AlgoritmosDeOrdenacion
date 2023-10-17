@@ -16,11 +16,7 @@ public class ConjuntoAreglos {
             "cyan", "gris", "naranja", "rojo", "ROJO", "magenta", "Rojo" };
 
     static Set<String> HashSet = new HashSet<>();
-
-    // LinkedHashSet: Mantiene el orden de como se agregaron
     static Set<String> LinkedHashSet = new LinkedHashSet<>();
-
-    // TreeSet: los ordena automaticamente
     static Set<String> TreeSet = new TreeSet<>();
 
     public static void Duplicados(Set<String> conjunto, String dato){
@@ -32,7 +28,9 @@ public class ConjuntoAreglos {
     }// end Duplicados
 
     public static void LLenar() {
-        
+        HashSet.clear();
+        LinkedHashSet.clear();
+        TreeSet.clear();
         for (int i = 0; i < colores.length; i++) {
             String dato = colores[i].toUpperCase();
             Duplicados(HashSet, dato);
@@ -70,7 +68,7 @@ public class ConjuntoAreglos {
 
                 default:
                     break;
-            }
+            } //end switch
         } while (opcion != 0);
 
     }// end main

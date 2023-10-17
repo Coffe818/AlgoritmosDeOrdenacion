@@ -21,6 +21,7 @@ public class ConjuntoAreglos {
 
     public static void Duplicados(Set<String> conjunto, String dato){
         if (conjunto.contains(dato)) {// en caso de tener ek dato no hace nada
+                                        // el Set lo valida la duplicacion,
             
         }else{// si no contiene el dato lo agrega 
             conjunto.add(dato);
@@ -53,7 +54,7 @@ public class ConjuntoAreglos {
         int opcion;
         do {
             opcion = Integer.parseInt(JOptionPane.showInputDialog(null, "======= MENU ====="
-                    + "\n1. Imprimir HashSet \n2. Imprimir LinkedHashSet\n3. Imprimir TreeSet"));
+                    + "\n1. Imprimir HashSet \n2. Imprimir LinkedHashSet\n3. Imprimir TreeSet\n0. salir"));
 
             switch (opcion) {
                 case 1:

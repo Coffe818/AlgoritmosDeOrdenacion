@@ -89,11 +89,11 @@ public class ConjuntosTBD {
         return "El alumno no se encuetra (No debe llegar a imprimir esto)";
     }// end localizar alumno
 
-    public static void ImprimirJOption(Set<alumnos> conjunto, String nombre) {
+    public static void ImprimirJOption(Set<alumnos> conjunto) {
         FormatoTabla Ft = new FormatoTabla();
-        Ft.AgregarColumnas(Ft.Columnas(nombre));
-        for (alumnos num : conjunto) {
-            Ft.AgregarDatos(Ft.Datos(num));
+        Ft.AgregarColumnas(Ft.Columnas("Matricula", "Nombre", "Grupo", "Carrera", "Edad"));
+        for (alumnos alu : conjunto) {
+            Ft.AgregarDatos(Ft.Datos(alu.matricula, alu.nombre, alu.grupo, alu.carrera, alu.edad));
         } // end for para agregar datos
         Ft.ImprimirTabla();
     }// end Imprimir en Joption pane
@@ -108,7 +108,7 @@ public class ConjuntosTBD {
             String carrera;
             boolean segir = true;
             opcion = Integer.parseInt(JOptionPane.showInputDialog(null, "=========== Menu ConjutnosTBD ==========="
-                    + "\n1. Alta alumno \n2. Baja alumno \n3. Imprimir alumno \n4. Localizar"));
+                    + "\n1. Alta alumno \n2. Baja alumno \n3. Imprimir alumnos \n4. Localizar \n0. Salir"));
 
             switch (opcion) {
                 case 1:
@@ -122,12 +122,12 @@ public class ConjuntosTBD {
                         } // end if else
                     } while (segir);// do while para que pida una matricula que no exista
 
-                    nombre = JOptionPane.showInputDialog("Introduce el nombre:");
+                    nombre = JOptionPane.showInputDialog("Introduce el nombre:").toUpperCase();
                     grupo = Integer.parseInt(JOptionPane.showInputDialog("Introduce el grupo:"));
                     dia = Integer.parseInt(JOptionPane.showInputDialog("Introduce el día de nacimiento:"));
                     mes = Integer.parseInt(JOptionPane.showInputDialog("Introduce el mes de nacimiento:"));
                     year = Integer.parseInt(JOptionPane.showInputDialog("Introduce el año de nacimiento:"));
-                    carrera = JOptionPane.showInputDialog("Introduce la carrera:");
+                    carrera = JOptionPane.showInputDialog("Introduce la carrera:").toUpperCase();
                     altaAlumno(HashSet, matricula, nombre, grupo, dia, mes, year, carrera);
                     altaAlumno(TreeSet, matricula, nombre, grupo, dia, mes, year, carrera);
                     altaAlumno(LinkedHashSet, matricula, nombre, grupo, dia, mes, year, carrera);
@@ -150,25 +150,29 @@ public class ConjuntosTBD {
                 case 3:
                     int opcion2 = Integer.parseInt(JOptionPane.showInputDialog("      Que set quieres imprimir?"
                             + "\n1. Hashset \n2.TreeSet \n3.LinkedHashSet"));
-                    ;
+
                     switch (opcion2) {
                         case 1:
-                            // ImprimirJOption(HashSet, "Hasset");
+                            ImprimirJOption(HashSet);
                             break;
                         case 2:
+                            ImprimirJOption(TreeSet);
                             break;
                         case 3:
+                            ImprimirJOption(LinkedHashSet);
                             break;
 
                         default:
                             break;
-                    }
+                    }// end switch
+                    break;
+                case 4:
 
                     break;
 
                 default:
                     break;
-            }
+            }// end sithc
         } while (opcion != 0);
     }// end main
 }// end class

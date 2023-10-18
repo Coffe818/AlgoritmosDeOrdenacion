@@ -8,6 +8,10 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 import java.util.TreeSet;
 
+import javax.swing.JOptionPane;
+
+import Tarea10.FormatoTabla;
+
 public class ConjuntosTBD {
     static Set<alumnos> HashSet = new HashSet<>();
     static Set<alumnos> LinkedHashSet = new LinkedHashSet<>();
@@ -55,18 +59,54 @@ public class ConjuntosTBD {
         conjuntos.add(NuevoAlumno);
     }// end alta alumno
 
-    public static void bajaAlumno(Set<alumnos> conjunto , int matricula){
-        for (alumnos alu : conjunto){
+    public static void bajaAlumno(Set<alumnos> conjunto, int matricula) {
+        for (alumnos alu : conjunto) {
             if (alu.matricula == matricula) {
                 conjunto.remove(alu);
-            }// elimina el alumno si lo encuetra
-        }// end for para recorrer alumno
+            } // elimina el alumno si lo encuetra
+        } // end for para recorrer alumno
     }// end baja alumno
 
-    public static void localizarAlumno(Set<alumnos> conjunto){
-        
-    }
+    public static String localizarAlumno(Set<alumnos> conjunto) {
+        for (alumnos alu : conjunto) {
+            if (conjunto.contains(alu)) {
+                return "El alumno si se encuetra";
+            } else {
+                return "El alumno no se encuetra";
+            } // end if else
+        } // end for para recorrer conjunto
+        return "El alumno no se encuetra (No debe llegar a imprimir esto)";
+    }// end localizar alumno
 
+    public static void ImprimirJOption(Set<String> conjunto, String nombre) {
+        FormatoTabla Ft = new FormatoTabla();
+        Ft.AgregarColumnas(Ft.Columnas(nombre));
+        for (String num : conjunto) {
+            Ft.AgregarDatos(Ft.Datos(num));
+        } // end for para agregar datos
+        Ft.ImprimirTabla();
+    }// end Imprimir en Joption pane
 
-}
-// end class
+    public static void main(String[] args) {
+        int opcion;
+        do {
+            opcion = Integer.parseInt(JOptionPane.showInputDialog(null, "=========== Menu ConjutnosTBD ==========="
+                    + "\n1. Alta alumno \n2. Baja alumno \n3. Imprimir alumno \n4. Localizar"));
+
+            switch (opcion) {
+                case 1:
+                        
+                    break;
+                case 2:
+
+                    break;
+                case 3:
+
+                    break;
+
+                default:
+                    break;
+            }
+        } while (opcion != 0);
+    }// end main
+}// end class

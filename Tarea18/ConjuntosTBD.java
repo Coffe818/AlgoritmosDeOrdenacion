@@ -17,7 +17,7 @@ public class ConjuntosTBD {
     static Set<alumnos> LinkedHashSet = new LinkedHashSet<>();
     static Set<alumnos> TreeSet = new TreeSet<>();
 
-    public static class alumnos {
+    public static class alumnos implements Comparable<alumnos> {
         int matricula;
         String nombre;
         int grupo;
@@ -33,6 +33,12 @@ public class ConjuntosTBD {
             this.year = year;
             this.carrera = carrera;
         }// end constructor
+
+        // se necesita este comper para el TreeSet ya que el Treeset ordena y necesita
+        // saber por cual dato/columna va a ordenar
+        public int compareTo(alumnos otroAlumno) {
+            return this.nombre.compareTo(otroAlumno.nombre);
+        }// end compare to
     }// end class alumnos
 
     static alumnos NuevoAlumno;
@@ -90,12 +96,37 @@ public class ConjuntosTBD {
     public static void main(String[] args) {
         int opcion;
         do {
+            int matricula;
+            String nombre;
+            int grupo;
+            int dia, mes, year; // dd/mm/aaaa
+            String carrera;
+
             opcion = Integer.parseInt(JOptionPane.showInputDialog(null, "=========== Menu ConjutnosTBD ==========="
                     + "\n1. Alta alumno \n2. Baja alumno \n3. Imprimir alumno \n4. Localizar"));
 
             switch (opcion) {
                 case 1:
-                        
+                    boolean segir = true;
+                    do {
+                        matricula = Integer.parseInt(JOptionPane.showInputDialog("Introduce la matrícula:"));
+                        if (!exitenciaMatricula(LinkedHashSet, matricula)) {
+                            segir = false;
+                        } else {
+                            JOptionPane.showMessageDialog(null, "La matricula " + matricula + " ya existe");
+                            segir = true;
+                        } // end if else
+                    } while (segir);// do while para que pida una matricula que no exista
+
+                    nombre = JOptionPane.showInputDialog("Introduce el nombre:");
+                    grupo = Integer.parseInt(JOptionPane.showInputDialog("Introduce el grupo:"));
+                    dia = Integer.parseInt(JOptionPane.showInputDialog("Introduce el día de nacimiento:"));
+                    mes = Integer.parseInt(JOptionPane.showInputDialog("Introduce el mes de nacimiento:"));
+                    year = Integer.parseInt(JOptionPane.showInputDialog("Introduce el año de nacimiento:"));
+                    carrera = JOptionPane.showInputDialog("Introduce la carrera:");
+                    altaAlumno(HashSet, matricula, nombre, grupo, dia, mes, year, carrera);
+                    altaAlumno(TreeSet, matricula, nombre, grupo, dia, mes, year, carrera);
+                    altaAlumno(LinkedHashSet, matricula, nombre, grupo, dia, mes, year, carrera);
                     break;
                 case 2:
 

@@ -74,19 +74,19 @@ public class ConjuntosTBD {
             alumnos alu = iterator.next();
             if (alu.matricula == matricula) {
                 iterator.remove();
-            }
-        }
+            } // end if
+        } // end while
     }// end baja alumno
 
-    public static String localizarAlumno(Set<alumnos> conjunto) {
+    public static String localizarAlumno(Set<alumnos> conjunto, int matricula) {
         for (alumnos alu : conjunto) {
-            if (conjunto.contains(alu)) {
+            if (alu.matricula == matricula) {
                 return "El alumno si se encuetra";
             } else {
                 return "El alumno no se encuetra";
             } // end if else
         } // end for para recorrer conjunto
-        return "El alumno no se encuetra (No debe llegar a imprimir esto)";
+        return "El alumno no se encuetra ";
     }// end localizar alumno
 
     public static void ImprimirJOption(Set<alumnos> conjunto) {
@@ -114,7 +114,7 @@ public class ConjuntosTBD {
                 case 1:
                     do {
                         matricula = Integer.parseInt(JOptionPane.showInputDialog("Introduce la matrícula:"));
-                        if (!exitenciaMatricula(LinkedHashSet, matricula)) {
+                        if (!exitenciaMatricula(HashSet, matricula)) {
                             segir = false;
                         } else {
                             JOptionPane.showMessageDialog(null, "La matricula " + matricula + " ya existe");
@@ -128,6 +128,7 @@ public class ConjuntosTBD {
                     mes = Integer.parseInt(JOptionPane.showInputDialog("Introduce el mes de nacimiento:"));
                     year = Integer.parseInt(JOptionPane.showInputDialog("Introduce el año de nacimiento:"));
                     carrera = JOptionPane.showInputDialog("Introduce la carrera:").toUpperCase();
+
                     altaAlumno(HashSet, matricula, nombre, grupo, dia, mes, year, carrera);
                     altaAlumno(TreeSet, matricula, nombre, grupo, dia, mes, year, carrera);
                     altaAlumno(LinkedHashSet, matricula, nombre, grupo, dia, mes, year, carrera);
@@ -135,13 +136,13 @@ public class ConjuntosTBD {
                 case 2:
                     do {
                         matricula = Integer.parseInt(JOptionPane.showInputDialog("Introduce la matrícula:"));
-                        if (!exitenciaMatricula(LinkedHashSet, matricula)) {
+                        if (!exitenciaMatricula(HashSet, matricula)) {
                             JOptionPane.showMessageDialog(null, "La matricula " + matricula + " no existe");
                             segir = true;
                         } else {
                             segir = false;
                         } // end if else
-                    } while (segir);// do while para que pida una matricula que si oexista
+                    } while (segir);// do while para que pida una matricula que si exista
                     bajaAlumno(HashSet, matricula);
                     bajaAlumno(TreeSet, matricula);
                     bajaAlumno(LinkedHashSet, matricula);
@@ -167,7 +168,17 @@ public class ConjuntosTBD {
                     }// end switch
                     break;
                 case 4:
-
+                    /*do {
+                        matricula = Integer.parseInt(JOptionPane.showInputDialog("Introduce la matrícula:"));
+                        if (!exitenciaMatricula(LinkedHashSet, matricula)) {
+                            JOptionPane.showMessageDialog(null, "La matricula " + matricula + " no existe");
+                            segir = true;
+                        } else {
+                            segir = false;
+                        } // end if else
+                    } while (segir);// do while para que pida una matricula que si exista*/
+                    matricula = Integer.parseInt(JOptionPane.showInputDialog("Introduce la matrícula:"));
+                    JOptionPane.showMessageDialog(null,localizarAlumno(HashSet, matricula));
                     break;
 
                 default:

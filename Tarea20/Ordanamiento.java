@@ -75,13 +75,14 @@ public class Ordanamiento {
         long endTime = System.nanoTime();
         long duration = endTime - startTime;
 
-        text.append("Comparaciones: " + comp + "\n Movimientos: " + mov + "\nTiempo de ejecución: " + duration
-                + " milisegundos");
+        text.append("Comparaciones: " + comp + "\n Movimientos: " + mov + "\nTiempo de ejecución (nanosegundos): "
+                + duration);
         JOptionPane.showMessageDialog(null, text.toString());
     }// end insercion directa
 
     public static void Seleccion() {
         long startTime = System.nanoTime();
+        StringBuilder text = new StringBuilder();
 
         int[] ArrayPrueba = new int[ArrayNumRan.length];
         System.arraycopy(ArrayNumRan, 0, ArrayPrueba, 0, tamano);
@@ -93,26 +94,23 @@ public class Ordanamiento {
 
                 if (ArrayPrueba[j] < ArrayPrueba[men]) {
                     men = j;
-                }
-            }
+                }// revisa cual es el menor
+            }// end for para ir viendo cual es el menot
             comp++;
 
             int aux = ArrayPrueba[i];
             ArrayPrueba[i] = ArrayPrueba[men];
             ArrayPrueba[men] = aux;
             mov++;
-        }
+        }// for para recorrer hasta el penultimo
 
         long endTime = System.nanoTime();
-        long tiempoEjecucion = endTime - startTime;
+        long duration = endTime - startTime;
 
-        ImprimirArray(ArrayNumRan);
-        System.out.println("\n========");
-        ImprimirArray(ArrayPrueba);
-        System.out.println("\nComparaciones: " + comp);
-        System.out.println("Movimiento: " + mov);
-        System.out.println("Tiempo de ejecución (nanosegundos): " + tiempoEjecucion);
-    }
+        text.append("Comparaciones: " + comp + "\n Movimientos: " + mov + "\nTiempo de ejecución (nanosegundos): "
+                + duration);
+        JOptionPane.showMessageDialog(null, text.toString());
+    }// end Seleccion
 
     public static void main(String[] args) {
         LlenarArray();

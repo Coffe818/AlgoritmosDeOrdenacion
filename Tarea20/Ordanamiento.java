@@ -2,8 +2,10 @@ package Tarea20;
 
 import java.util.Random;
 
+import javax.swing.JOptionPane;
+
 public class Ordanamiento {
-    static int tamano = 10;
+    static int tamano = 50;
     static int[] ArrayNumRan = new int[tamano];
 
     public static boolean ContieneValor(int[] array, int valor) {
@@ -18,7 +20,7 @@ public class Ordanamiento {
     public static void LlenarArray() {
         Random random = new Random();
         for (int i = 0; i < ArrayNumRan.length; i++) {
-            int numRandom = random.nextInt(tamano );
+            int numRandom = random.nextInt(tamano+1 );
 
             if (!ContieneValor(ArrayNumRan, numRandom)) {
                 ArrayNumRan[i] = numRandom;
@@ -49,6 +51,9 @@ public class Ordanamiento {
      */
 
     public static void InsercionDirecta() {
+        long startTime = System.currentTimeMillis();
+        StringBuilder text = new StringBuilder();
+
         int[] ArrayPrueba = new int[ArrayNumRan.length];
         System.arraycopy(ArrayNumRan, 0, ArrayPrueba, 0, tamano);
 
@@ -66,10 +71,12 @@ public class Ordanamiento {
             comp++;
             mov++;
         } // end for recorre todo el array
-        System.out.println("Comparaciones: " + comp + "\n Movimientos: " + mov + "\nArray original ");
-        ImprimirArray(ArrayNumRan);
-        System.out.println("\nArray original: ");
-        ImprimirArray(ArrayPrueba);
+        
+        long endTime = System.currentTimeMillis();
+        long duration = endTime - startTime;
+
+        text.append("Comparaciones: " + comp + "\n Movimientos: " + mov +"\nTiempo de ejecución: " + duration + " milisegundos");
+        JOptionPane.showMessageDialog(null, text.toString());
     }// end insercion directa
 
     public static void main(String[] args) {

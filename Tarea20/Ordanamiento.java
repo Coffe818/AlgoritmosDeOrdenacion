@@ -72,12 +72,12 @@ public class Ordanamiento {
             mov++;
         } // end for recorre todo el array
 
-        long endTime = System.nanoTime();
-        long duration = endTime - startTime;
+            long endTime = System.nanoTime();
+            long duration = endTime - startTime;
 
-        text.append("Comparaciones: " + comp + "\n Movimientos: " + mov + "\nTiempo de ejecución (nanosegundos): "
-                + duration);
-        JOptionPane.showMessageDialog(null, text.toString());
+            text.append("Comparaciones: " + comp + "\n Movimientos: " + mov + "\nTiempo de ejecución (nanosegundos): "
+                    + duration);
+            JOptionPane.showMessageDialog(null, text.toString());
     }// end insercion directa
 
     public static void Seleccion() {
@@ -94,15 +94,15 @@ public class Ordanamiento {
 
                 if (ArrayPrueba[j] < ArrayPrueba[men]) {
                     men = j;
-                }// revisa cual es el menor
-            }// end for para ir viendo cual es el menot
+                } // revisa cual es el menor
+            } // end for para ir viendo cual es el menot
             comp++;
 
             int aux = ArrayPrueba[i];
             ArrayPrueba[i] = ArrayPrueba[men];
             ArrayPrueba[men] = aux;
             mov++;
-        }// for para recorrer hasta el penultimo
+        } // for para recorrer hasta el penultimo
 
         long endTime = System.nanoTime();
         long duration = endTime - startTime;
@@ -112,9 +112,40 @@ public class Ordanamiento {
         JOptionPane.showMessageDialog(null, text.toString());
     }// end Seleccion
 
+    public static void Burbuja() {
+        long startTime = System.nanoTime();
+        StringBuilder text = new StringBuilder();
+
+        int[] ArrayPrueba = new int[ArrayNumRan.length];
+        System.arraycopy(ArrayNumRan, 0, ArrayPrueba, 0, tamano);
+        int comp = 0, mov = 0;
+        for (int i = 0; i < ArrayPrueba.length; i++) {
+
+            for (int j = 0; j < ArrayPrueba.length - 1; j++) {
+                int elementoActual = ArrayPrueba[j];
+                int elementoSiguiente = ArrayPrueba[j + 1];
+                comp++;
+                if (elementoActual > elementoSiguiente) {
+
+                    ArrayPrueba[j] = elementoSiguiente;
+                    ArrayPrueba[j + 1] = elementoActual;
+                    mov++;
+                } // end if para que el mayor valla " subiendo "
+            } // end for paramover el elemento
+        } // end for para recorrer todo el arreglo
+
+        long endTime = System.nanoTime();
+        long duration = endTime - startTime;
+       
+        text.append("Comparaciones: " + comp + "\n Movimientos: " + mov + "\nTiempo de ejecución (nanosegundos): "
+                + duration);
+        JOptionPane.showMessageDialog(null, text.toString());
+    }// end burbujas
+
     public static void main(String[] args) {
         LlenarArray();
         // InsercionDirecta();
-        Seleccion();
+        // Seleccion();
+        //Burbuja();
     }// end main
 }// end class

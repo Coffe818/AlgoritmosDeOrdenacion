@@ -20,7 +20,7 @@ public class Ordanamiento {
     public static void LlenarArray() {
         Random random = new Random();
         for (int i = 0; i < ArrayNumRan.length; i++) {
-            int numRandom = random.nextInt(tamano+1 );
+            int numRandom = random.nextInt(tamano + 1);
 
             if (!ContieneValor(ArrayNumRan, numRandom)) {
                 ArrayNumRan[i] = numRandom;
@@ -34,7 +34,7 @@ public class Ordanamiento {
         for (int i = 0; i < array.length; i++) {
             System.out.print(array[i] + " , ");
         } // end for
-    }// end llenar array 
+    }// end llenar array
 
     /*
      * PARA COPYAR UN ARRAY
@@ -51,7 +51,7 @@ public class Ordanamiento {
      */
 
     public static void InsercionDirecta() {
-        long startTime = System.currentTimeMillis();
+        long startTime = System.nanoTime();
         StringBuilder text = new StringBuilder();
 
         int[] ArrayPrueba = new int[ArrayNumRan.length];
@@ -71,16 +71,52 @@ public class Ordanamiento {
             comp++;
             mov++;
         } // end for recorre todo el array
-        
-        long endTime = System.currentTimeMillis();
+
+        long endTime = System.nanoTime();
         long duration = endTime - startTime;
 
-        text.append("Comparaciones: " + comp + "\n Movimientos: " + mov +"\nTiempo de ejecución: " + duration + " milisegundos");
+        text.append("Comparaciones: " + comp + "\n Movimientos: " + mov + "\nTiempo de ejecución: " + duration
+                + " milisegundos");
         JOptionPane.showMessageDialog(null, text.toString());
     }// end insercion directa
 
+    public static void Seleccion() {
+        long startTime = System.nanoTime();
+
+        int[] ArrayPrueba = new int[ArrayNumRan.length];
+        System.arraycopy(ArrayNumRan, 0, ArrayPrueba, 0, tamano);
+        int comp = 0, mov = 0;
+
+        for (int i = 0; i < ArrayPrueba.length - 1; i++) {
+            int men = i;
+            for (int j = i + 1; j < ArrayPrueba.length; j++) {
+
+                if (ArrayPrueba[j] < ArrayPrueba[men]) {
+                    men = j;
+                }
+            }
+            comp++;
+
+            int aux = ArrayPrueba[i];
+            ArrayPrueba[i] = ArrayPrueba[men];
+            ArrayPrueba[men] = aux;
+            mov++;
+        }
+
+        long endTime = System.nanoTime();
+        long tiempoEjecucion = endTime - startTime;
+
+        ImprimirArray(ArrayNumRan);
+        System.out.println("\n========");
+        ImprimirArray(ArrayPrueba);
+        System.out.println("\nComparaciones: " + comp);
+        System.out.println("Movimiento: " + mov);
+        System.out.println("Tiempo de ejecución (nanosegundos): " + tiempoEjecucion);
+    }
+
     public static void main(String[] args) {
         LlenarArray();
-        InsercionDirecta();
+        // InsercionDirecta();
+        Seleccion();
     }// end main
 }// end class

@@ -192,11 +192,70 @@ public class Ordanamiento {
         JOptionPane.showMessageDialog(null, text.toString());
     }// end quicksort de a devis
 
+    public class BinSort {
+        static int mov = 0;
+
+        public static void binSort(int[] arr) {
+            int max = Maximo(arr);
+            int[] bins = new int[max + 1];
+
+            for (int num : arr) {
+                bins[num]++;
+                mov++; // Incrementa el contador de movimientos
+            } // end for
+
+            int i = 0;
+            for (int j = 0; j <= max; j++) {
+                while (bins[j] > 0) {
+                    arr[i++] = j;
+                    bins[j]--;
+                    mov++; // Incrementa el contador de movimientos
+                } // end while
+            } // end for
+        }// end binsort
+
+        private static int Maximo(int[] arr) {
+            int max = arr[0];
+            for (int i = 1; i < arr.length; i++) {
+                if (arr[i] > max) {
+                    max = arr[i];
+                } // end if
+            } // end ofr
+            return max;
+        }// end Maximo
+    }// end clas
+
+    public static void BinSort() {
+        long startTime = System.nanoTime();
+        StringBuilder text = new StringBuilder();
+
+        int[] ArrayPrueba = new int[ArrayNumRan.length];
+        System.arraycopy(ArrayNumRan, 0, ArrayPrueba, 0, tamano);
+
+        BinSort.binSort(ArrayPrueba);
+
+        long endTime = System.nanoTime();
+        long duration = endTime - startTime;
+
+        text.append("Comparaciones: "
+                + "este metodo no hace comparaciones ya que utiliza un enfoque de conteo para ordenar los elementos"
+                + "\n Movimientos: " + BinSort.mov
+                + "\nTiempo de ejecución (nanosegundos): "
+                + duration);
+        JOptionPane.showMessageDialog(null, text.toString());
+    }// end bin sort
+
+    /*
+     * ImprimirArray(ArrayNumRan);
+     * System.out.println("====");
+     * ImprimirArray(ArrayPrueba);
+     */
     public static void main(String[] args) {
         LlenarArray();
         // InsercionDirecta();
         // Seleccion();
         // Burbuja();
-        //QuickSort();
+        // QuickSort();
+        // BinSort();
     }// end main
 }// end class

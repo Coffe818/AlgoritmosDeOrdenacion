@@ -19,7 +19,7 @@ public class Ordanamiento {
         return false;
     }// end contiene valr
 
-    public static void LlenarArray() {      
+    public static void LlenarArray() {
         Random random = new Random();
         for (int i = 0; i < ArrayNumRan.length; i++) {
             int numRandom = random.nextInt(tamano + 1);
@@ -472,7 +472,7 @@ public class Ordanamiento {
     }// end class
 
     public static void HeapSort() {
-     long startTime = System.nanoTime();
+        long startTime = System.nanoTime();
         StringBuilder text = new StringBuilder();
 
         int[] ArrayPrueba = new int[ArrayNumRan.length];
@@ -482,13 +482,68 @@ public class Ordanamiento {
 
         long endTime = System.nanoTime();
         long duration = endTime - startTime;
-        
+
         text.append("Comparaciones: " + HeapSort.comp + "\n Movimientos: " + HeapSort.mov
                 + "\nTiempo de ejecución (nanosegundos): "
                 + duration);
         JOptionPane.showMessageDialog(null, text.toString());
-        
+
     }// end heap Sort
+
+    public class CountingSort {
+        static int mov = 0;
+
+        public static void countingSort(int[] arr) {
+            int max = Maximo(arr);
+            int[] count = new int[max + 1];
+
+            for (int num : arr) {
+                count[num]++;
+                mov++; // Incrementa el contador de movimientos
+            }// end for
+
+            int i = 0;
+            for (int j = 0; j <= max; j++) {
+                while (count[j] > 0) {
+                    arr[i++] = j;
+                    count[j]--;
+                    mov++; // Incrementa el contador de movimientos
+                }// end while
+            }//end for
+        }// end CountingSort
+
+        private static int Maximo(int[] arr) {
+            int max = arr[0];
+            for (int i = 1; i < arr.length; i++) {
+                if (arr[i] > max) {
+                    max = arr[i];
+                }// end if
+            }// end for
+            return max;
+        }// end maximo
+    }// end class
+
+    public static void CountingSort(){
+        long startTime = System.nanoTime();
+        StringBuilder text = new StringBuilder();
+
+        int[] ArrayPrueba = new int[ArrayNumRan.length];
+        System.arraycopy(ArrayNumRan, 0, ArrayPrueba, 0, tamano);
+
+        CountingSort.countingSort(ArrayPrueba);
+
+        long endTime = System.nanoTime();
+        long duration = endTime - startTime;
+
+        ImprimirArray(ArrayNumRan);
+        System.out.println("\n====");
+        ImprimirArray(ArrayPrueba);
+        
+        text.append("Comparaciones: " + "No tiene comparaciones" + "\n Movimientos: " + CountingSort.mov
+                + "\nTiempo de ejecución (nanosegundos): "
+                + duration);
+        JOptionPane.showMessageDialog(null, text.toString());
+    }// end main CountingSort
 
     /*
      * ImprimirArray(ArrayNumRan);
@@ -506,6 +561,7 @@ public class Ordanamiento {
         // MargeSort();
         // Shell();
         // ArbolBinario();
-        //HeapSort();
+        // HeapSort();
+        CountingSort();
     }// end main
 }// end class

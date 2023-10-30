@@ -303,20 +303,74 @@ public class Ordanamiento {
 
         long endTime = System.nanoTime();
         long duration = endTime - startTime;
-        ImprimirArray(ArrayNumRan);
-        System.out.println("====");
-        ImprimirArray(ArrayPrueba);
         text.append("Comparaciones: " + "No tiene comparaciones" + "\n Movimientos: " + RadixSort.mov
                 + "\nTiempo de ejecución (nanosegundos): "
                 + duration);
         JOptionPane.showMessageDialog(null, text.toString());
 
-    }
+    }// end radix
+
+    public class MergeSort {
+        static int comp = 0;
+        static int mov = 0;
+
+        public static void mergeSort(int[] arr) {
+            if (arr.length > 1) {
+                int mid = arr.length / 2;
+                int[] left = Arrays.copyOfRange(arr, 0, mid);
+                int[] right = Arrays.copyOfRange(arr, mid, arr.length);
+
+                mergeSort(left);
+                mergeSort(right);
+
+                merge(arr, left, right);
+            } // end if
+        }// end marge Sort
+
+        private static void merge(int[] arr, int[] left, int[] right) {
+            int i = 0, j = 0, k = 0;
+            while (i < left.length && j < right.length) {
+                comp++; // Incrementa el contador de comparaciones
+                if (left[i] <= right[j]) {
+                    arr[k++] = left[i++];
+                } else {
+                    arr[k++] = right[j++];
+                } // end if else
+                mov++; // Incrementa el contador de movimientos
+            } // end while
+            while (i < left.length) {
+                arr[k++] = left[i++];
+                mov++; // Incrementa el contador de movimientos
+            } // end while
+            while (j < right.length) {
+                arr[k++] = right[j++];
+                mov++; // Incrementa el contador de movimientos
+            } // end while
+        }// end merge
+    }// end clas MergeSort
+
+    public static void MargeSort() {
+        long startTime = System.nanoTime();
+        StringBuilder text = new StringBuilder();
+
+        int[] ArrayPrueba = new int[ArrayNumRan.length];
+        System.arraycopy(ArrayNumRan, 0, ArrayPrueba, 0, tamano);
+
+        MergeSort.mergeSort(ArrayPrueba);
+
+        long endTime = System.nanoTime();
+        long duration = endTime - startTime;
+
+        text.append("Comparaciones: " + MergeSort.comp + "\n Movimientos: " + MergeSort.mov
+                + "\nTiempo de ejecución (nanosegundos): "
+                + duration);
+        JOptionPane.showMessageDialog(null, text.toString());
+    }// end MargeSrot
 
     /*
-     * ImprimirArray(ArrayNumRan);
-     * System.out.println("====");
-     * ImprimirArray(ArrayPrueba);
+      ImprimirArray(ArrayNumRan);
+      System.out.println("====");
+      ImprimirArray(ArrayPrueba);
      */
     public static void main(String[] args) {
         LlenarArray();
@@ -325,6 +379,7 @@ public class Ordanamiento {
         // Burbuja();
         // QuickSort();
         // BinSort();
-        //Radix();
+        // Radix();
+        MargeSort();
     }// end main
 }// end class

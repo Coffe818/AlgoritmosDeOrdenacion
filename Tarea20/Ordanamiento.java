@@ -77,6 +77,10 @@ public class Ordanamiento {
         long endTime = System.nanoTime();
         long duration = endTime - startTime;
 
+        ImprimirArray(ArrayNumRan);
+        System.out.println("\n====");
+        ImprimirArray(ArrayPrueba);
+
         text.append("Comparaciones: " + comp + "\n Movimientos: " + mov + "\nTiempo de ejecución (nanosegundos): "
                 + duration);
         JOptionPane.showMessageDialog(null, text.toString());
@@ -109,6 +113,10 @@ public class Ordanamiento {
         long endTime = System.nanoTime();
         long duration = endTime - startTime;
 
+        ImprimirArray(ArrayNumRan);
+        System.out.println("\n====");
+        ImprimirArray(ArrayPrueba);
+
         text.append("Comparaciones: " + comp + "\n Movimientos: " + mov + "\nTiempo de ejecución (nanosegundos): "
                 + duration);
         JOptionPane.showMessageDialog(null, text.toString());
@@ -138,6 +146,9 @@ public class Ordanamiento {
 
         long endTime = System.nanoTime();
         long duration = endTime - startTime;
+        ImprimirArray(ArrayNumRan);
+        System.out.println("\n====");
+        ImprimirArray(ArrayPrueba);
 
         text.append("Comparaciones: " + comp + "\n Movimientos: " + mov + "\nTiempo de ejecución (nanosegundos): "
                 + duration);
@@ -188,6 +199,10 @@ public class Ordanamiento {
 
         long endTime = System.nanoTime();
         long duration = endTime - startTime;
+        ImprimirArray(ArrayNumRan);
+        System.out.println("\n====");
+        ImprimirArray(ArrayPrueba);
+
         text.append("Comparaciones: " + QuickSort.comp + "\n Movimientos: " + QuickSort.mov
                 + "\nTiempo de ejecución (nanosegundos): "
                 + duration);
@@ -238,6 +253,9 @@ public class Ordanamiento {
 
         long endTime = System.nanoTime();
         long duration = endTime - startTime;
+        ImprimirArray(ArrayNumRan);
+        System.out.println("\n====");
+        ImprimirArray(ArrayPrueba);
 
         text.append("Comparaciones: "
                 + "este metodo no hace comparaciones ya que utiliza un enfoque de conteo para ordenar los elementos"
@@ -304,6 +322,10 @@ public class Ordanamiento {
 
         long endTime = System.nanoTime();
         long duration = endTime - startTime;
+        ImprimirArray(ArrayNumRan);
+        System.out.println("\n====");
+        ImprimirArray(ArrayPrueba);
+
         text.append("Comparaciones: " + "No tiene comparaciones" + "\n Movimientos: " + RadixSort.mov
                 + "\nTiempo de ejecución (nanosegundos): "
                 + duration);
@@ -361,6 +383,9 @@ public class Ordanamiento {
 
         long endTime = System.nanoTime();
         long duration = endTime - startTime;
+        ImprimirArray(ArrayNumRan);
+        System.out.println("\n====");
+        ImprimirArray(ArrayPrueba);
 
         text.append("Comparaciones: " + MergeSort.comp + "\n Movimientos: " + MergeSort.mov
                 + "\nTiempo de ejecución (nanosegundos): "
@@ -393,6 +418,10 @@ public class Ordanamiento {
 
         long endTime = System.nanoTime();
         long duration = endTime - startTime;
+        ImprimirArray(ArrayNumRan);
+        System.out.println("\n====");
+        ImprimirArray(ArrayPrueba);
+
         text.append("Comparaciones: " + comp + "\n Movimientos: " + mov
                 + "\nTiempo de ejecución (nanosegundos): "
                 + duration);
@@ -421,6 +450,7 @@ public class Ordanamiento {
         ImprimirArray(ArrayNumRan);
         System.out.println("====");
         ImprimirArray(ArrayPrueba);
+
         long duration = endTime - startTime;
         text.append("Comparaciones: " + "No Compara" + "\n Movimientos: " + mov
                 + "\nTiempo de ejecución (nanosegundos): "
@@ -482,6 +512,9 @@ public class Ordanamiento {
 
         long endTime = System.nanoTime();
         long duration = endTime - startTime;
+        ImprimirArray(ArrayNumRan);
+        System.out.println("\n====");
+        ImprimirArray(ArrayPrueba);
 
         text.append("Comparaciones: " + HeapSort.comp + "\n Movimientos: " + HeapSort.mov
                 + "\nTiempo de ejecución (nanosegundos): "
@@ -500,7 +533,7 @@ public class Ordanamiento {
             for (int num : arr) {
                 count[num]++;
                 mov++; // Incrementa el contador de movimientos
-            }// end for
+            } // end for
 
             int i = 0;
             for (int j = 0; j <= max; j++) {
@@ -508,8 +541,8 @@ public class Ordanamiento {
                     arr[i++] = j;
                     count[j]--;
                     mov++; // Incrementa el contador de movimientos
-                }// end while
-            }//end for
+                } // end while
+            } // end for
         }// end CountingSort
 
         private static int Maximo(int[] arr) {
@@ -517,13 +550,13 @@ public class Ordanamiento {
             for (int i = 1; i < arr.length; i++) {
                 if (arr[i] > max) {
                     max = arr[i];
-                }// end if
-            }// end for
+                } // end if
+            } // end for
             return max;
         }// end maximo
     }// end class
 
-    public static void CountingSort(){
+    public static void CountingSort() {
         long startTime = System.nanoTime();
         StringBuilder text = new StringBuilder();
 
@@ -538,7 +571,7 @@ public class Ordanamiento {
         ImprimirArray(ArrayNumRan);
         System.out.println("\n====");
         ImprimirArray(ArrayPrueba);
-        
+
         text.append("Comparaciones: " + "No tiene comparaciones" + "\n Movimientos: " + CountingSort.mov
                 + "\nTiempo de ejecución (nanosegundos): "
                 + duration);
@@ -552,16 +585,37 @@ public class Ordanamiento {
      */
     public static void main(String[] args) {
         LlenarArray();
-        // InsercionDirecta();
-        // Seleccion();
-        // Burbuja();
-        // QuickSort();
-        // BinSort();
-        // Radix();
-        // MargeSort();
-        // Shell();
-        // ArbolBinario();
-        // HeapSort();
+        System.out.println("\n=======================\n");
+        InsercionDirecta();
+        System.out.println("\n=======================\n");
+
+        Seleccion();
+        System.out.println("\n=======================\n");
+
+        Burbuja();
+        System.out.println("\n=======================\n");
+
+        QuickSort();
+        System.out.println("\n=======================\n");
+
+        BinSort();
+        System.out.println("\n=======================\n");
+
+        Radix();
+        System.out.println("\n=======================\n");
+
+        MargeSort();
+        System.out.println("\n=======================\n");
+
+        Shell();
+        System.out.println("\n=======================\n");
+
+        ArbolBinario();
+        System.out.println("\n=======================\n");
+
+        HeapSort();
+        System.out.println("\n=======================\n");
+
         CountingSort();
     }// end main
 }// end class

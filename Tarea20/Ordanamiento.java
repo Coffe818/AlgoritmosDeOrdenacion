@@ -19,7 +19,7 @@ public class Ordanamiento {
         return false;
     }// end contiene valr
 
-    public static void LlenarArray() {
+    public static void LlenarArray() {      
         Random random = new Random();
         for (int i = 0; i < ArrayNumRan.length; i++) {
             int numRandom = random.nextInt(tamano + 1);
@@ -415,7 +415,7 @@ public class Ordanamiento {
         for (int num : treeSet) {
             ArrayPrueba[i++] = num;
             mov++; // Incrementa el contador de movimientos
-        }// end for, agrega ordenados al array
+        } // end for, agrega ordenados al array
 
         long endTime = System.nanoTime();
         ImprimirArray(ArrayNumRan);
@@ -427,6 +427,68 @@ public class Ordanamiento {
                 + duration);
         JOptionPane.showMessageDialog(null, text.toString());
     }// end ArbolBinario
+
+    public class HeapSort {
+        static int comp = 0;
+        static int mov = 0;
+
+        public static void heapSort(int arr[]) {
+            int n = arr.length;
+            for (int i = n / 2 - 1; i >= 0; i--) {
+                heapify(arr, n, i);
+            } // end for
+            for (int i = n - 1; i >= 0; i--) {
+                int temp = arr[0];
+                arr[0] = arr[i];
+                arr[i] = temp;
+                mov += 3; // Incrementa el contador de movimientos
+                heapify(arr, i, 0);
+            } // end for
+        }// end heapSort
+
+        private static void heapify(int arr[], int n, int i) {
+            int largest = i;
+            int left = 2 * i + 1;
+            int right = 2 * i + 2;
+
+            if (left < n && arr[left] > arr[largest]) {
+                largest = left;
+                comp++; // Incrementa el contador de comparaciones
+            } // end if
+
+            if (right < n && arr[right] > arr[largest]) {
+                largest = right;
+                comp++; // Incrementa el contador de comparaciones
+            } // end if
+
+            if (largest != i) {
+                int swap = arr[i];
+                arr[i] = arr[largest];
+                arr[largest] = swap;
+                mov += 3; // Incrementa el contador de movimientos
+                heapify(arr, n, largest);
+            } // end if
+        }// end heapify
+    }// end class
+
+    public static void HeapSort() {
+     long startTime = System.nanoTime();
+        StringBuilder text = new StringBuilder();
+
+        int[] ArrayPrueba = new int[ArrayNumRan.length];
+        System.arraycopy(ArrayNumRan, 0, ArrayPrueba, 0, tamano);
+
+        HeapSort.heapSort(ArrayPrueba);
+
+        long endTime = System.nanoTime();
+        long duration = endTime - startTime;
+        
+        text.append("Comparaciones: " + HeapSort.comp + "\n Movimientos: " + HeapSort.mov
+                + "\nTiempo de ejecución (nanosegundos): "
+                + duration);
+        JOptionPane.showMessageDialog(null, text.toString());
+        
+    }// end heap Sort
 
     /*
      * ImprimirArray(ArrayNumRan);
@@ -443,7 +505,7 @@ public class Ordanamiento {
         // Radix();
         // MargeSort();
         // Shell();
-        //ArbolBinario();
-
+        // ArbolBinario();
+        //HeapSort();
     }// end main
 }// end class

@@ -72,12 +72,12 @@ public class Ordanamiento {
             mov++;
         } // end for recorre todo el array
 
-            long endTime = System.nanoTime();
-            long duration = endTime - startTime;
+        long endTime = System.nanoTime();
+        long duration = endTime - startTime;
 
-            text.append("Comparaciones: " + comp + "\n Movimientos: " + mov + "\nTiempo de ejecución (nanosegundos): "
-                    + duration);
-            JOptionPane.showMessageDialog(null, text.toString());
+        text.append("Comparaciones: " + comp + "\n Movimientos: " + mov + "\nTiempo de ejecución (nanosegundos): "
+                + duration);
+        JOptionPane.showMessageDialog(null, text.toString());
     }// end insercion directa
 
     public static void Seleccion() {
@@ -136,16 +136,67 @@ public class Ordanamiento {
 
         long endTime = System.nanoTime();
         long duration = endTime - startTime;
-       
+
         text.append("Comparaciones: " + comp + "\n Movimientos: " + mov + "\nTiempo de ejecución (nanosegundos): "
                 + duration);
         JOptionPane.showMessageDialog(null, text.toString());
     }// end burbujas
 
+    public class QuickSort {
+        static int comp = 0;
+        static int mov = 0;
+
+        public static void quickSort(int[] arr, int low, int high) {
+            if (low < high) {
+                int pi = Paricion(arr, low, high);
+                quickSort(arr, low, pi - 1);
+                quickSort(arr, pi + 1, high);
+            } // end if
+        }// end quicksort
+
+        private static int Paricion(int[] arr, int low, int high) {
+            int pivot = arr[high];
+            int i = (low - 1);
+            for (int j = low; j < high; j++) {
+                comp++; // Incrementa el contador de comparaciones
+                if (arr[j] < pivot) {
+                    i++;
+                    int temp = arr[i];
+                    arr[i] = arr[j];
+                    arr[j] = temp;
+                    mov++; // Incrementa el contador de movimientos
+                } // end fi
+            } // end for
+            int temp = arr[i + 1];
+            arr[i + 1] = arr[high];
+            arr[high] = temp;
+            mov++; // Incrementa el contador de movimientos
+            return i + 1;
+        }// end particion
+    }// end clas
+
+    public static void QuickSort() {
+        long startTime = System.nanoTime();
+        StringBuilder text = new StringBuilder();
+
+        int[] ArrayPrueba = new int[ArrayNumRan.length];
+        System.arraycopy(ArrayNumRan, 0, ArrayPrueba, 0, tamano);
+
+        QuickSort.quickSort(ArrayPrueba, 0, tamano - 1);
+
+        long endTime = System.nanoTime();
+        long duration = endTime - startTime;
+        text.append("Comparaciones: " + QuickSort.comp + "\n Movimientos: " + QuickSort.mov
+                + "\nTiempo de ejecución (nanosegundos): "
+                + duration);
+        JOptionPane.showMessageDialog(null, text.toString());
+    }// end quicksort de a devis
+
     public static void main(String[] args) {
         LlenarArray();
         // InsercionDirecta();
         // Seleccion();
-        //Burbuja();
+        // Burbuja();
+        //QuickSort();
     }// end main
 }// end class

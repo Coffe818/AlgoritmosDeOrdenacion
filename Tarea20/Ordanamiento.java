@@ -367,10 +367,41 @@ public class Ordanamiento {
         JOptionPane.showMessageDialog(null, text.toString());
     }// end MargeSrot
 
+    public static void Shell() {
+        long startTime = System.nanoTime();
+        StringBuilder text = new StringBuilder();
+
+        int[] ArrayPrueba = new int[ArrayNumRan.length];
+        System.arraycopy(ArrayNumRan, 0, ArrayPrueba, 0, tamano);
+        int comp = 0, mov = 0;
+
+        int n = ArrayPrueba.length;
+        for (int gap = n / 2; gap > 0; gap /= 2) {
+            for (int i = gap; i < n; i++) {
+                int temp = ArrayPrueba[i];
+                int j;
+                for (j = i; j >= gap && ArrayPrueba[j - gap] > temp; j -= gap) {
+                    ArrayPrueba[j] = ArrayPrueba[j - gap];
+                    comp++; // Incrementa el contador de comparaciones
+                    mov++; // Incrementa el contador de movimientos
+                } // end for
+                ArrayPrueba[j] = temp;
+                mov++; // Incrementa el contador de movimientos
+            } // end for
+        } // end for
+
+        long endTime = System.nanoTime();
+        long duration = endTime - startTime;
+        text.append("Comparaciones: " + comp + "\n Movimientos: " + mov
+                + "\nTiempo de ejecución (nanosegundos): "
+                + duration);
+        JOptionPane.showMessageDialog(null, text.toString());
+    }// end Shell
+
     /*
-      ImprimirArray(ArrayNumRan);
-      System.out.println("====");
-      ImprimirArray(ArrayPrueba);
+     * ImprimirArray(ArrayNumRan);
+     * System.out.println("====");
+     * ImprimirArray(ArrayPrueba);
      */
     public static void main(String[] args) {
         LlenarArray();
@@ -380,6 +411,7 @@ public class Ordanamiento {
         // QuickSort();
         // BinSort();
         // Radix();
-        MargeSort();
+        // MargeSort();
+        Shell();
     }// end main
 }// end class

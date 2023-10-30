@@ -2,6 +2,7 @@ package Tarea20;
 
 import java.util.Arrays;
 import java.util.Random;
+import java.util.TreeSet;
 
 import javax.swing.JOptionPane;
 
@@ -398,6 +399,35 @@ public class Ordanamiento {
         JOptionPane.showMessageDialog(null, text.toString());
     }// end Shell
 
+    public static void ArbolBinario() {
+        long startTime = System.nanoTime();
+        StringBuilder text = new StringBuilder();
+
+        int[] ArrayPrueba = new int[ArrayNumRan.length];
+        System.arraycopy(ArrayNumRan, 0, ArrayPrueba, 0, tamano);
+        int mov = 0;
+        TreeSet<Integer> treeSet = new TreeSet<>();
+        for (int num : ArrayPrueba) {
+            treeSet.add(num);
+            mov++; // Incrementa el contador de movimientos
+        } // end for agrega al treset
+        int i = 0;
+        for (int num : treeSet) {
+            ArrayPrueba[i++] = num;
+            mov++; // Incrementa el contador de movimientos
+        }// end for, agrega ordenados al array
+
+        long endTime = System.nanoTime();
+        ImprimirArray(ArrayNumRan);
+        System.out.println("====");
+        ImprimirArray(ArrayPrueba);
+        long duration = endTime - startTime;
+        text.append("Comparaciones: " + "No Compara" + "\n Movimientos: " + mov
+                + "\nTiempo de ejecución (nanosegundos): "
+                + duration);
+        JOptionPane.showMessageDialog(null, text.toString());
+    }// end ArbolBinario
+
     /*
      * ImprimirArray(ArrayNumRan);
      * System.out.println("====");
@@ -412,6 +442,8 @@ public class Ordanamiento {
         // BinSort();
         // Radix();
         // MargeSort();
-        Shell();
+        // Shell();
+        //ArbolBinario();
+
     }// end main
 }// end class

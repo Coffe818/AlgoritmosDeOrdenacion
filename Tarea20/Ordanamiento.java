@@ -1,5 +1,6 @@
 package Tarea20;
 
+import java.util.Arrays;
 import java.util.Random;
 
 import javax.swing.JOptionPane;
@@ -245,6 +246,73 @@ public class Ordanamiento {
         JOptionPane.showMessageDialog(null, text.toString());
     }// end bin sort
 
+    public class RadixSort {
+        static int mov = 0;
+
+        public static void radixSort(int[] arr) {
+            int max = Maximo(arr);
+            for (int exp = 1; max / exp > 0; exp *= 10) {
+                contadorSort(arr, exp);
+            } // end for
+        }// end mai
+
+        private static void contadorSort(int[] arr, int exp) {
+            int n = arr.length;
+            int[] output = new int[n];
+            int[] count = new int[10];
+            Arrays.fill(count, 0);
+
+            for (int i = 0; i < n; i++) {
+                count[(arr[i] / exp) % 10]++;
+                mov++; // Incrementa el contador de movimientos
+            } // end for
+
+            for (int i = 1; i < 10; i++) {
+                count[i] += count[i - 1];
+            } // end for
+
+            for (int i = n - 1; i >= 0; i--) {
+                output[count[(arr[i] / exp) % 10] - 1] = arr[i];
+                count[(arr[i] / exp) % 10]--;
+                mov++; // Incrementa el contador de movimientos
+            } // end for
+
+            System.arraycopy(output, 0, arr, 0, n);
+        }// end contador sort
+
+        private static int Maximo(int[] arr) {
+            int max = arr[0];
+            for (int i = 1; i < arr.length; i++) {
+                if (arr[i] > max) {
+                    max = arr[i];
+                } // end fi
+            } // end for
+            return max;
+        }// end maximo
+    }// end clas radix
+
+    public static void Radix() {
+
+        long startTime = System.nanoTime();
+        StringBuilder text = new StringBuilder();
+
+        int[] ArrayPrueba = new int[ArrayNumRan.length];
+        System.arraycopy(ArrayNumRan, 0, ArrayPrueba, 0, tamano);
+
+        RadixSort.radixSort(ArrayPrueba);
+
+        long endTime = System.nanoTime();
+        long duration = endTime - startTime;
+        ImprimirArray(ArrayNumRan);
+        System.out.println("====");
+        ImprimirArray(ArrayPrueba);
+        text.append("Comparaciones: " + "No tiene comparaciones" + "\n Movimientos: " + RadixSort.mov
+                + "\nTiempo de ejecución (nanosegundos): "
+                + duration);
+        JOptionPane.showMessageDialog(null, text.toString());
+
+    }
+
     /*
      * ImprimirArray(ArrayNumRan);
      * System.out.println("====");
@@ -257,5 +325,6 @@ public class Ordanamiento {
         // Burbuja();
         // QuickSort();
         // BinSort();
+        //Radix();
     }// end main
 }// end class

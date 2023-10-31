@@ -7,7 +7,7 @@ import java.util.TreeSet;
 import javax.swing.JOptionPane;
 
 public class Ordanamiento {
-    static int tamano = 10;
+    static int tamano = 1000000;
     static int[] ArrayNumRan = new int[tamano];
 
     public static boolean ContieneValor(int[] array, int valor) {

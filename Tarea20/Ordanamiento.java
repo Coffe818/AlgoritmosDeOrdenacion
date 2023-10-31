@@ -58,7 +58,7 @@ public class Ordanamiento {
         StringBuilder text = new StringBuilder();
 
         int[] ArrayPrueba = new int[array.length];
-        System.arraycopy(array, 0, ArrayPrueba, 0, tamano);
+        System.arraycopy(array, 0, ArrayPrueba, 0, array.length);
 
         int aux = 0, mov = 0, comp = 0;
         for (int i = 1; i < ArrayPrueba.length; i++) {

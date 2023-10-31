@@ -599,6 +599,7 @@ public class Ordanamiento {
                     "8. SHELL\n" +
                     "9. ARBOL BINARIO (TREESET)\n" +
                     "10. HEAP SORT\n" +
+                    "11. COUNTING SORT\n" +
                     "0. SALIR"));
 
             switch (opcion) {
@@ -631,6 +632,9 @@ public class Ordanamiento {
                     break;
                 case 10:
                     HeapSort(ArrayNumRan);
+                    break;
+                case 11:
+                    CountingSort(ArrayNumRan);
                     break;
 
                 default:

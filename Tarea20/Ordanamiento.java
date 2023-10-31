@@ -20,16 +20,28 @@ public class Ordanamiento {
     }// end contiene valr
 
     public static void LlenarArray() {
+         long startTime = System.currentTimeMillis();
+        StringBuilder text = new StringBuilder();
+
         Random random = new Random();
         for (int i = 0; i < ArrayNumRan.length; i++) {
             int numRandom = random.nextInt(tamano + 1);
 
             if (!ContieneValor(ArrayNumRan, numRandom)) {
+                System.out.println(numRandom);
+
                 ArrayNumRan[i] = numRandom;
             } else {
                 i--;
             } // si contiene el valor se regresa hasta que meta un valor que no este
         } // end for
+         long endTime = System.currentTimeMillis();
+        double duration = (endTime - startTime) / 1000.0;
+
+        
+
+        text.append("Tiempo de ejecución (segundos): "+ duration);
+        JOptionPane.showMessageDialog(null, text.toString());
     }// end llenar array
 
     public static void ImprimirArray(int[] array) {

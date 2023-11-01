@@ -25,20 +25,18 @@ public class Ordanamiento {
 
         Random random = new Random();
         for (int i = 0; i < tamano; i++) {
-            int numRandom = random.nextInt(tamano * 8);         
-                // no valida
-                ArrayNumRan[i] = numRandom;
-                System.out.println(numRandom);
-          
+            int numRandom = random.nextInt(tamano * 8);
+            // no valida
+            ArrayNumRan[i] = numRandom;
+            System.out.println(numRandom);
+
         } // end for
 
         System.out.println("termine ");
         long endTime = System.currentTimeMillis();
         double duration = (endTime - startTime) / 1000.0;
 
-        
-
-        text.append("Tiempo de ejecución (segundos): "+ duration);
+        text.append("Tiempo de ejecución (segundos): " + duration);
         JOptionPane.showMessageDialog(null, text.toString());
     }// end llenar array
 
@@ -91,7 +89,7 @@ public class Ordanamiento {
         ImprimirArray(array);
         System.out.print("\n====");
         ImprimirArray(ArrayPrueba);
-
+        System.out.println("\ntermine......");
         text.append("Comparaciones: " + comp + "\n Movimientos: " + mov + "\nTiempo de ejecución (segundos): "
                 + duration);
         JOptionPane.showMessageDialog(null, text.toString());
@@ -127,7 +125,7 @@ public class Ordanamiento {
         ImprimirArray(array);
         System.out.print("\n====");
         ImprimirArray(ArrayPrueba);
-
+        System.out.println("\ntermine......");
         text.append("Comparaciones: " + comp + "\n Movimientos: " + mov + "\nTiempo de ejecución (segundos): "
                 + duration);
         JOptionPane.showMessageDialog(null, text.toString());
@@ -160,7 +158,7 @@ public class Ordanamiento {
         ImprimirArray(array);
         System.out.print("\n====");
         ImprimirArray(ArrayPrueba);
-
+        System.out.println("\ntermine......");
         text.append("Comparaciones: " + comp + "\n Movimientos: " + mov + "\nTiempo de ejecución (segundos): "
                 + duration);
         JOptionPane.showMessageDialog(null, text.toString());
@@ -213,7 +211,7 @@ public class Ordanamiento {
         ImprimirArray(array);
         System.out.print("\n====");
         ImprimirArray(ArrayPrueba);
-
+        System.out.println("\ntermine......");
         text.append("Comparaciones: " + QuickSort.comp + "\n Movimientos: " + QuickSort.mov
                 + "\nTiempo de ejecución (segundos): "
                 + duration);
@@ -267,7 +265,7 @@ public class Ordanamiento {
         ImprimirArray(array);
         System.out.print("\n====");
         ImprimirArray(ArrayPrueba);
-
+        System.out.println("\ntermine......");
         text.append("Comparaciones: "
                 + "este metodo no hace comparaciones"
                 + "\n Movimientos: " + BinSort.mov
@@ -336,7 +334,7 @@ public class Ordanamiento {
         ImprimirArray(array);
         System.out.print("\n====");
         ImprimirArray(ArrayPrueba);
-
+        System.out.println("\ntermine......");
         text.append("Comparaciones: " + "No tiene comparaciones" + "\n Movimientos: " + RadixSort.mov
                 + "\nTiempo de ejecución (segundos): "
                 + duration);
@@ -397,7 +395,7 @@ public class Ordanamiento {
         ImprimirArray(array);
         System.out.print("\n====");
         ImprimirArray(ArrayPrueba);
-
+        System.out.println("\ntermine......");
         text.append("Comparaciones: " + MergeSort.comp + "\n Movimientos: " + MergeSort.mov
                 + "\nTiempo de ejecución (segundos): "
                 + duration);
@@ -432,7 +430,7 @@ public class Ordanamiento {
         ImprimirArray(array);
         System.out.print("\n====");
         ImprimirArray(ArrayPrueba);
-
+        System.out.println("\ntermine......");
         text.append("Comparaciones: " + comp + "\n Movimientos: " + mov
                 + "\nTiempo de ejecución (segundos): "
                 + duration);
@@ -461,7 +459,7 @@ public class Ordanamiento {
         ImprimirArray(array);
         System.out.println("====");
         ImprimirArray(ArrayPrueba);
-
+        System.out.println("\ntermine......");
         double duration = (endTime - startTime) / 1000.0;
         text.append("Comparaciones: " + "No Compara" + "\n Movimientos: " + mov
                 + "\nTiempo de ejecución (segundos): "
@@ -526,7 +524,7 @@ public class Ordanamiento {
         ImprimirArray(array);
         System.out.print("\n====");
         ImprimirArray(ArrayPrueba);
-
+        System.out.println("\ntermine......");
         text.append("Comparaciones: " + HeapSort.comp + "\n Movimientos: " + HeapSort.mov
                 + "\nTiempo de ejecución (segundos): "
                 + duration);
@@ -582,7 +580,7 @@ public class Ordanamiento {
         ImprimirArray(array);
         System.out.print("\n====");
         ImprimirArray(ArrayPrueba);
-
+        System.out.println("\ntermine......");
         text.append("Comparaciones: " + "No tiene comparaciones" + "\n Movimientos: " + CountingSort.mov
                 + "\nTiempo de ejecución (segundos): "
                 + duration);

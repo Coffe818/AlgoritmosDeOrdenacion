@@ -20,22 +20,20 @@ public class Ordanamiento {
     }// end contiene valr
 
     public static void LlenarArray() {
-         long startTime = System.currentTimeMillis();
+        long startTime = System.currentTimeMillis();
         StringBuilder text = new StringBuilder();
 
         Random random = new Random();
-        for (int i = 0; i < ArrayNumRan.length; i++) {
-            int numRandom = random.nextInt(tamano + 1);
-
-            if (!ContieneValor(ArrayNumRan, numRandom)) {
-                System.out.println(numRandom);
-
+        for (int i = 0; i < tamano; i++) {
+            int numRandom = random.nextInt(tamano * 8);         
+                // no valida
                 ArrayNumRan[i] = numRandom;
-            } else {
-                i--;
-            } // si contiene el valor se regresa hasta que meta un valor que no este
+                System.out.println(numRandom);
+          
         } // end for
-         long endTime = System.currentTimeMillis();
+
+        System.out.println("termine ");
+        long endTime = System.currentTimeMillis();
         double duration = (endTime - startTime) / 1000.0;
 
         

@@ -89,7 +89,7 @@ public class Ordanamiento {
         ImprimirArray(array);
         System.out.print("\n====");
         ImprimirArray(ArrayPrueba);
-        System.out.println("\ntermine......");
+         System.out.println("\ntermine......");
         text.append("Comparaciones: " + comp + "\n Movimientos: " + mov + "\nTiempo de ejecución (segundos): "
                 + duration);
         JOptionPane.showMessageDialog(null, text.toString());

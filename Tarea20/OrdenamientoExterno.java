@@ -9,11 +9,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
+import javax.swing.JOptionPane;
+
 public class OrdenamientoExterno {
     static String directorio = "C:\\Users\\New\\OneDrive - Universidad Autonoma de Coahuila\\Workspace 818\\Java\\Escuela\\AlgoritmosDeOrdenacion\\Tarea20\\A\\";
     static ArrayList<String> ArrayListnum = new ArrayList<>();
-    static int cantidadNumeros = 10;
-    static int cantidadArchivos = 2;
+    static int cantidadNumeros = 2000000;
+    static int cantidadArchivos = 1;
     static int total = cantidadArchivos * cantidadNumeros;
 
     public static void Crear() {
@@ -82,6 +84,36 @@ public class OrdenamientoExterno {
         Ordanamiento.InsercionDirecta(ArrayNum);
     }// end Palabra random
 
+    public static void InsercionDirecta(int[] array) {
+        StringBuilder text = new StringBuilder();
+
+        int[] ArrayPrueba = new int[array.length];
+        System.arraycopy(array, 0, ArrayPrueba, 0, array.length);
+        long startTime = System.currentTimeMillis();
+
+        int aux = 0, mov = 0, comp = 0;
+        for (int i = 1; i < ArrayPrueba.length; i++) {
+            aux = ArrayPrueba[i];// guarda el dato
+            int j = i - 1;// le da la posicion anterior
+            while ((j >= 0) && (aux < ArrayPrueba[j])) { // compara
+                ArrayPrueba[j + 1] = ArrayPrueba[j];// mueve los datos
+                j--;// se va a una posicion anterios para luego volver acomparar
+                mov++;
+                comp++;
+            } // end while
+            ArrayPrueba[j + 1] = aux;
+            comp++;
+            mov++;
+        } // end for recorre todo el array
+
+        long endTime = System.currentTimeMillis();
+        double duration = (endTime - startTime) / 1000.0;
+
+        text.append("Comparaciones: " + comp + "\n Movimientos: " + mov + "\nTiempo de ejecución (segundos): "
+                + duration);
+        JOptionPane.showMessageDialog(null, text.toString());
+    }// end insercion directa
+
     public static void BorrarArchivos() {
         for (int i = 0; i < cantidadArchivos; i++) {
             String nombreArchivo = directorio + "Archivo" + (i + 1) + ".txt";
@@ -100,9 +132,9 @@ public class OrdenamientoExterno {
     }// end borrar archivo
 
     public static void main(String[] args) {
-        Crear();
+        //Crear();
         LlenarArray();
-        BorrarArchivos();
+        //BorrarArchivos();
     }// end main
 
 }// end class

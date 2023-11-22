@@ -208,9 +208,9 @@ public class Ordanamiento {
 
         long endTime = System.currentTimeMillis();
         double duration = (endTime - startTime) / 1000.0;
-        ImprimirArray(array);
-        System.out.print("\n====");
-        ImprimirArray(ArrayPrueba);
+       // ImprimirArray(array);
+        //System.out.print("\n====");
+        //ImprimirArray(ArrayPrueba);
         System.out.println("\ntermine......");
         text.append("Comparaciones: " + QuickSort.comp + "\n Movimientos: " + QuickSort.mov
                 + "\nTiempo de ejecución (segundos): "
